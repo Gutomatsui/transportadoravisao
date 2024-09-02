@@ -1,4 +1,4 @@
-name: TransportadoraVisao
+name: transportadoravisao
 recipe: laravel
 config:
   webroot: ./public
