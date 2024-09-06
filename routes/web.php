@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',[siteController::class,'index']);
+Route::get('/a-empresa',[siteController::class,'sobre']);

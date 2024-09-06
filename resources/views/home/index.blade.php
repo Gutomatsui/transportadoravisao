@@ -1,6 +1,8 @@
 @extends('master')
+@section('title', $title) 
 
 @section('content')
+<div class="topo">
     <div class="banner">
         <div id="carousel-padrao" class="carousel slide" data-ride="carousel">
             <div class="transparencia-banner"></div>
@@ -55,6 +57,7 @@
             <!-- /BOTÕES LATERAIS PARA AVANÇAR/RETROCEDER -->
         </div>
     </div>
+</div>
 
     <div class="home-frase">
         <!-- RECIPIENTE -->
@@ -170,7 +173,7 @@
         <!-- /SERVICOS -->
     </div>
     <!-- /RECIPIENTE -->
-</div>
+
 
     <div class="mapa">
         <div class="mapa-unidade-santos">
