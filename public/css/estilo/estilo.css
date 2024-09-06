@@ -299,3 +299,141 @@ table .graficos-sassmaq{
 	
 }
 /* /SASSMAQ */
+
+
+.wizard-container {
+    max-width: 800px; /* Ajuste a largura como desejar */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilos para o Wizard */
+.wizard {
+    margin: 20px 0;
+}
+
+.wizard .nav-tabs {
+    position: relative;
+    margin-bottom: 20px;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wizard .nav-tabs li {
+    width: 33%;
+}
+
+.wizard .nav-tabs li a {
+    background: #e9ecef;
+    color: #5a5a5a;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.wizard .nav-tabs li.active a {
+    background: #007bff;
+    color: #fff;
+}
+
+.wizard .nav-tabs li a:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.wizard .tab-content {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para campos de formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilos para botões */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-default {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+}
+
+.btn-default:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .wizard .nav-tabs li {
+        width: 100%;
+    }
+
+    .wizard .nav-tabs li a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 14px;
+    }
+}

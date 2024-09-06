@@ -29,4 +29,8 @@ class siteController extends Controller
     public function clientes(){
       return view('clientes.index',['title' => 'Clientes']);
     }
+
+    public function cotacao(){
+      return view('cotacao.index',['title' => 'Cotação']);
+    }
 }
