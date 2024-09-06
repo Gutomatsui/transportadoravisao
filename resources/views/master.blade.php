@@ -4,13 +4,11 @@
 <meta name="robots" content="index, follow, all">
 <meta name="googlebot" content="index, follow, all">
 <meta name="google" content="notranslate">
-<meta name="author" content="incatel.com.br">
+<meta name="author" content="matsuitecnologia.com.br">
 
-<script src="js/jquery/jquery.min.js"></script>
-
-<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
-<link href="css/estilo/estilo.css" rel="stylesheet">
-<link href="css/responsivo/responsivo.css" rel="stylesheet">
+<link href="{{ URL::to('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
+<link href="{{ URL::to('css/estilo/estilo.css') }}" rel="stylesheet">
+<link href="{{ URL::to('css/responsivo/responsivo.css') }}" rel="stylesheet">
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -84,7 +82,7 @@
                     <a href="a-empresa">A Empresa</a>
                 </li>
 
-                <li class="sassmaq') 'ativo' : ''; ?>">
+                <li class="sassmaq">
                     <a href="sassmaq">SASSMAQ</a>
                 </li>
 
@@ -107,14 +105,11 @@
         </div>
         <!-- /MENU DE NAVEGAÇÃO -->
 
-        <!-- BANNER -->
-
-
-        <!-- /BANNER -->
-
     </div>
     <!-- RECIPIENTE -->
-</div>
+
+
+@yield('content')
 
 {{-- Roda pé --}}
 <div class="rodape">
@@ -179,3 +174,112 @@
         </div>
     </div>
 </div>
+
+<div class="desenvolvimento">
+    <div class="container">
+        <div class="pull-left">
+            Transportadora Visão &copy; <?php echo date('Y'); ?> - Todos os direitos são reservados.
+        </div>
+        <div class="pull-right">
+            Desenvolvido por:
+            <a href="http://incatel.com.br" target="_blank" title="Incatel TI">
+                <img src="img/logotipo-incatel-ti.png" alt="Incatel TI" title="Incatel TI">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="{{ URL::to('js/jquery/jquery.min.js') }}"></script>
+<script src="{{ URL::to('js/bootstrap/bootstrap.min.js') }}"></script>
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=true&async=2"></script>
+<script type="text/javascript">
+    if (window.innerWidth > 764) {
+        var directionsDisplay;
+        var mapa1;
+        var marcador1 = new google.maps.LatLng(-23.933810457048406, -46.32714580000004);
+        var minhaImagem = 'img/icone-mapa.png';
+
+        var myOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(-23.933810457048406, -46.32714580000004),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
+        };
+        mapa1 = new google.maps.Map(document.getElementById("mapa-unidade-santos"), myOptions);
+
+        /*
+        var mapa2;
+        var marcador2 = new google.maps.LatLng(-3.8082246010570433, -38.41715969999996);
+        
+        var myOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(-3.8082246010570433, -38.41715969999996),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
+        };    
+        mapa2 = new google.maps.Map(document.getElementById("mapa-unidade-fortaleza"), myOptions);
+        */
+        /*
+        var mapa_personalizado = [
+            {
+                elementType: "labels.text",            //Cor dos textos do mapa
+                stylers: [
+                  { color: "#ffffff" }
+                ]
+            }, {             
+                elementType: "labels.text.stroke",     //Cor da Borda dos textos do mapa
+                stylers: [
+                    { visibility:"off" }            //Oculta a Borda
+                ] 
+            }, {
+                "elementType": "geometry.fill",     //Cor do mapa
+                "stylers": [
+                    { "color": "#007ecb" }
+                ]
+            }, {
+                "elementType": "geometry.stroke",    //Cor das Bordas do mapa
+                "stylers": [
+                    { "color": "#0064AB" }
+                ]
+            }, {
+                "featureType": "road",                 //Cor das Ruas
+                "elementType": "geometry.fill",
+                "stylers": [
+                    { "color": "#0064AB" }
+                ]
+            }
+        ];
+        */
+        var mapa_personalizado = [
+
+
+        ];
+        mapa1.setOptions({
+            styles: mapa_personalizado
+        });
+        //mapa2.setOptions({styles: mapa_personalizado});
+
+        var marker = new google.maps.Marker({
+            position: marcador1,
+            map: mapa1,
+            title: "Transportadora Visão",
+            icon: minhaImagem
+        });
+
+        /*
+        var marker = new google.maps.Marker({
+              position: marcador2,
+              map: mapa2,
+              title:"Transportadora Visão",
+              icon: minhaImagem
+          });
+        */
+
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(mapa1);
+        //directionsDisplay.setMap(mapa2);
+        //google.maps.event.addDomListener(window, 'load', initialize);
+    }
+</script>
