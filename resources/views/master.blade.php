@@ -5,6 +5,7 @@
 <meta name="googlebot" content="index, follow, all">
 <meta name="google" content="notranslate">
 <meta name="author" content="matsuitecnologia.com.br">
+<title>{{ $title ?? 'Transportadora visao' }}</title> <!-- Título dinâmico -->
 
 <link href="{{ URL::to('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
 <link href="{{ URL::to('css/estilo/estilo.css') }}" rel="stylesheet">
@@ -74,11 +75,11 @@
         <!-- MENU DE NAVEGAÇÃO -->
         <div class="menu-navegacao">
             <ul>
-                <li class="inicio">
+                <li class="{{ $title == '' ? 'ativo' : '' }}">
                     <a href="">Início</a>
                 </li>
 
-                <li class="a-empresa">
+                <li class="{{ $title == 'A Empresa' ? 'ativo' : '' }}">
                     <a href="a-empresa">A Empresa</a>
                 </li>
 
@@ -104,8 +105,8 @@
             </ul>
         </div>
         <!-- /MENU DE NAVEGAÇÃO -->
-
     </div>
+</div>
     <!-- RECIPIENTE -->
 
 
