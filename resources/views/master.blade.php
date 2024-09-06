@@ -87,7 +87,7 @@
                     <a href="sassmaq">SASSMAQ</a>
                 </li>
 
-                <li class="servicos">
+                <li class="{{ $title == 'Serviços' ? 'ativo' : '' }}">
                     <a href="servicos">Serviços</a>
                 </li>
 
