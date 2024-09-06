@@ -1,0 +1,64 @@
+@media screen and (max-width: 767px) {
+	.logo { display: none; }
+	.logo-responsivo { display: block; }
+	.menu-responsivo { display: block; }
+	.menu-institucional { display: none; }
+	.menu-navegacao { display: none; }
+	.topo .container { padding: 0;}
+	.topo-mapa { display: none; }
+	.banner { padding: 0; border: 0;}
+	.banner h1 { left: 35px; top: 20px; font-size: 18px; line-height: 24px; color: #fff; }
+	.banner .item { height: 150px !important; }
+	.banner .item img { opacity: 0.4;}
+	img.transparencia-banner, .banner img { height: 100% !important; }
+	.home-frase { padding: 15px 0; font-size: 16px; }
+	.titulo h1 { font-size: 26px ;}
+	.login {  }
+	.home-item { margin: 0 0 0 0;}
+	.rodape {  }
+	.rodape h4 { background-position: left bottom; font-size: 20px; font-weight: bold; }
+	.rodape-dados-de-contato a { color: #fff; }
+	.desenvolvimento .pull-left, .desenvolvimento .pull-right { width: 100%;  text-align: center; }
+	.login { display: none; }
+	.acompanhame	nto-mobile { display: block; }
+	.home-servicos-item { background: transparent; border: none; padding: 0; margin: 0; min-height: 50px;}
+	.home-bloco { margin-bottom: 20px; }
+	.home-bloco img { width: 100%; }
+	.mapa { display: none; }
+	.mapa-localizacao .mapa-unidade-santos {height: 200px; margin-bottom: 100px; }
+	.mapa-localizacao #mapa-unidade-santos {height: 200px;}
+	.servicos-item-imagem img { width: 100%; height: auto; min-height: 100px; }
+	.servicos-item-imagem img { display: none; }
+	.servicos-item-imagem img.mobile { display: block; }
+	.servicos-item-azul { background: transparent; }
+	.rodape-links-uteis ul li, .rodape-mapa-do-site ul li { padding: 7px 0; }
+	.rodape-links-uteis ul li a, .rodape-mapa-do-site ul li a { text-align: center; font-size: 18px; font-weight: 300; }
+	.rodape-dados-de-contato ul li  { font-size: 18px; }
+	.home-servicos-item { text-align: center;  margin-bottom: 20px;}
+	.home-servicos-item p { display: none; }
+	.home-servicos-item-imagem { display: block; }
+	.col-xs-invisivel {display: none;}
+	.col-xs-visivel {display: block;}
+	.sasmaq-declaracao-final { padding-top: 0;}
+	.col-xs-0 { display: none;}
+	.servicos-item { height: 100px;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.menu-navegacao { font-size: 11px; }
+	.menu-navegacao ul li { padding: 0;}
+	.menu-navegacao ul li a { padding: 5px; }
+	.logo img { height: 50px; margin-right: 10px; }
+	.logo { padding-top: 55px; padding-bottom: 35px; }
+	.home-frase, .login { font-size: 15px; }
+	.login input[type="text"] { width: 100px;}
+	.servicos-item-imagem img { width: 100%; height: 100%; }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	.logo img { height: 60px; margin-right: 20px; }
+	.home-frase, .login { font-size: 15px; }
+}
+
+@media screen and (min-width: 1201px) {
+}
