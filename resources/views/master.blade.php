@@ -91,7 +91,7 @@
                     <a href="servicos">Serviços</a>
                 </li>
 
-                <li class="frota">
+                <li class="{{ $title == 'Frota' ? 'ativo' : '' }}">
                     <a href="frota">Frota</a>
                 </li>
 

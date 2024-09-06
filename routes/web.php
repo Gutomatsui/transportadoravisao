@@ -17,5 +17,6 @@ Route::get('/',[siteController::class,'index']);
 Route::get('/a-empresa',[siteController::class,'sobre']);
 Route::get('/sassmaq',[siteController::class,'sassmaq']);
 Route::get('/servicos',[siteController::class,'servicos']);
+Route::get('/frota',[siteController::class,'frota']);
 
 

@@ -21,4 +21,8 @@ class siteController extends Controller
     public function servicos(){
       return view('servicos.index',['title' => 'Serviços']);
     }
+
+    public function frota(){
+      return view('frota.index',['title' => 'Frota']);
+    }
 }
