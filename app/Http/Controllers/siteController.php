@@ -13,4 +13,8 @@ class siteController extends Controller
     public function sobre(){
       return view('sobre.index',['title' =>'A Empresa']);
     }
+
+    public function sassmaq(){
+      return view('sassmaq.index',['title' => 'SASSMAQ']);
+    }
 }
