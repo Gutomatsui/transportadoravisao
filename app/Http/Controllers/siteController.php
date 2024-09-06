@@ -17,4 +17,8 @@ class siteController extends Controller
     public function sassmaq(){
       return view('sassmaq.index',['title' => 'SASSMAQ']);
     }
+
+    public function servicos(){
+      return view('servicos.index',['title' => 'Serviços']);
+    }
 }
