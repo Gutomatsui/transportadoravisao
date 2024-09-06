@@ -99,7 +99,7 @@
                     <a href="clientes">Clientes</a>
                 </li>
 
-                <li class="cotacao">
+                <li class="{{ $title == 'Cotação' ? 'ativo' : '' }}">
                     <a href="cotacao">Cotação</a>
                 </li>
             </ul>
