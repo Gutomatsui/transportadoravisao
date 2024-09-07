@@ -22,3 +22,7 @@ Route::get('/clientes',[siteController::class,'clientes']);
 Route::get('/cotacao',[siteController::class,'cotacao']);
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
