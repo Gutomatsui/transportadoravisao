@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CotacaoController;
 use App\Http\Controllers\siteController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,11 @@ Route::get('/frota',[siteController::class,'frota']);
 Route::get('/clientes',[siteController::class,'clientes']);
 Route::get('/cotacao',[siteController::class,'cotacao']);
 
+// Rota para exibir o formulário de criação
+Route::get('cotacoes/create', [CotacaoController::class, 'create'])->name('cotacoes.create');
 
+// Rota para salvar a nova cotação
+Route::post('cotacoes', [CotacaoController::class, 'store'])->name('cotacoes.store');
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
