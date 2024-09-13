@@ -76,7 +76,7 @@
         <div class="menu-navegacao">
             <ul>
                 <li class="{{ $title == '' ? 'ativo' : '' }}">
-                    <a href="">Início</a>
+                    <a href="/">Início</a>
                 </li>
 
                 <li class="{{ $title == 'A Empresa' ? 'ativo' : '' }}">
@@ -142,7 +142,7 @@
                         <h4>Mapa do site</h4>
                     </div>
                     <ul>
-                        <li><a href="">Início</a></li>
+                        <li><a href="/">Início</a></li>
                         <li><a href="a-empresa">A Empresa</a></li>
                         <li><a href="sassmaq">SASSMAQ</a></li>
                         <li><a href="servicos">Serviços</a></li>
