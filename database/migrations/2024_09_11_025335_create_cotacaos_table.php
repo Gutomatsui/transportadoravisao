@@ -32,6 +32,11 @@ class CreateCotacaosTable extends Migration
             $table->decimal('largura', 8, 2); // Verifique esta linha
             $table->decimal('altura', 8, 2);
             $table->decimal('peso_total', 8, 2);
+            $table->string('cnpj_emitente');
+            $table->string('cnpj_destinatario');
+            $table->string('tipo_mercadoria');
+            $table->string('resp_mercadoria');
+            $table->decimal('valor_nota', 8, 2);
             $table->timestamps();
         });        
     }

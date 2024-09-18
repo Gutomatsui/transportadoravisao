@@ -7,20 +7,8 @@
     <div class="content-header">
         <ul class="nav-horizontal text-center">
             <li>
-                <a href="{{URL::to('cliente/cadastro')}}"><i class="fa fa-users"></i> Clientes</a>
+                <a href="{{URL::to('cotacao/listar')}}"><i class="fa fa-truck" style="color: #000" ></i> Cotação</a>
             </li>
-            <li>
-                <a href="{{URL::to('orcamento/cadastro')}}"><i class="gi gi-paperclip"></i> Orçamentos</a>
-            </li>
-            <li>
-                <a href="{{URL::to('fatura/listar')}}"><i class="gi gi-barcode"></i> Faturas</a>
-            </li>
-            <li>
-                <a href="#"><i class="gi gi-charts"></i> Relatorios</a>
-            </li>
-
-
-
         </ul>
     </div>
     <!-- END Dashboard 2 Header -->
