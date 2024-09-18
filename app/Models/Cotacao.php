@@ -31,6 +31,11 @@ class Cotacao extends Model
         'comprimento',
         'largura',
         'altura',
-        'peso_total'
+        'peso_total',
+        'cnpj_emitente',
+        'cnpj_destinatario',
+        'tipo_mercadoria',
+        'resp_mercadoria',
+        'valor_nota'
     ];
 }

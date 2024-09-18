@@ -43,6 +43,16 @@
                     <label for="telefone">Telefone (com DDD)</label>
                     <input type="text" class="form-control" name="telefone" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="telefone">CNPJ do emitente</label>
+                    <input type="text" class="form-control" name="cnpj_emitente" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Responsabilidade do frete</label>
+                    <input type="text" class="form-control" name="resp_mercadoria" required>
+                </div>
                 <a class="btn btn-primary next-step">Próximo</a>
             </div>
 
@@ -88,6 +98,10 @@
             <div class="tab-pane" id="step3">
                 <h4>Informações de destino</h4>
 
+                <div class="form-group">
+                    <label for="endereco-destino">CNPJ do destinatario</label>
+                    <input type="text" class="form-control" name="cnpj_destinatario">
+                </div>
                 <!-- CEP Destino -->
                 <div class="form-group">
                     <label for="cep-destino">CEP Destino</label>
@@ -144,6 +158,14 @@
                 <div class="form-group">
                     <label for="peso-total">Peso total (kg)</label>
                     <input type="text" class="form-control" name="peso_total">
+                </div>
+                <div class="form-group">
+                    <label for="peso-total">Tipo de mercadoria</label>
+                    <input type="text" class="form-control" name="tipo_mercadoria">
+                </div>
+                <div class="form-group">
+                    <label for="peso-total">Valor da nota fiscal</label>
+                    <input type="text" class="form-control" name="valor_nota">
                 </div>
                 <a class="btn btn-default prev-step">Anterior</a>
                 <button type="submit" class="btn btn-success">Enviar</button>
