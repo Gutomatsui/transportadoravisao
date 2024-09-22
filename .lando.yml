@@ -4,4 +4,13 @@ config:
   webroot: ./public
   database: mysql
   xdebug: true
-  php: '8.2'  
+  php: '8.2'
+services:
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+    portforward: true
+    conf:
+      smtp_port: 1025
+      api_port: 8025

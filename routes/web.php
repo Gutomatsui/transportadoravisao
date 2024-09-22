@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CotacaoController;
 use App\Http\Controllers\siteController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,9 @@ Route::get('cotacoes/create', [CotacaoController::class, 'create'])->name('cotac
 Route::post('cotacoes', [CotacaoController::class, 'store'])->name('cotacoes.store');
 Route::get('cotacao/listar',[CotacaoController::class, 'listar'])->middleware();
 Route::get('cotacao/ver/{id}',[CotacaoController::class, 'ver'])->middleware();
+
+
+Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

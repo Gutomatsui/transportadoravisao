@@ -46,7 +46,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- END Customer Info -->
                 </div>
 
                 <!-- Informações da Carga abaixo da Informações do Cliente -->
@@ -55,7 +54,6 @@
                     <div class="block-title">
                         <h2><i class="fa fa-cube"></i> <strong>Informações</strong> da Carga</h2>
                     </div>
-                    <!-- END Carga Info Title -->
 
                     <!-- Carga Info -->
                     <table class="table table-borderless table-striped table-vcenter">
@@ -84,28 +82,17 @@
                                 <td class="text-right"><strong>Peso Total</strong></td>
                                 <td>{{ $cotacao->peso_total }}</td>
                             </tr>
-                            <tr>
-                                <td class="text-right"><strong>Valor da Nota Fiscal</strong></td>
-                                <td>{{ $cotacao->valor_nota }}</td>
-                            </tr>
                         </tbody>
                     </table>
-                    <!-- END Carga Info -->
                 </div>
             </div>
-            <!-- END Coluna de Informações do Cliente e Carga -->
 
-            <!-- Coluna de Conteúdo Adicional -->
+            <!-- Informações de Origem -->
             <div class="col-lg-8">
-                <!-- Block for Additional Content -->
                 <div class="block">
-                    <!-- Content Title -->
                     <div class="block-title">
                         <h2><i class="fa fa-truck fa-flip-horizontal"></i> <strong>Informações de Origem</strong></h2>
                     </div>
-                    <!-- END Content Title -->
-
-                    <!-- Content Section -->
                     <div class="block-section">
                         <table class="table table-borderless table-striped table-vcenter">
                             <tbody>
@@ -136,22 +123,15 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- END Content Section -->
                 </div>
             </div>
-            <!-- END Coluna de Conteúdo Adicional -->
 
-            <!-- Coluna de Conteúdo Adicional -->
+            <!-- Informações de Destino -->
             <div class="col-lg-8">
-                <!-- Block for Additional Content -->
                 <div class="block">
-                    <!-- Content Title -->
                     <div class="block-title">
                         <h2><i class="fa fa-truck"></i> <strong>Informações de Destino</strong></h2>
                     </div>
-                    <!-- END Content Title -->
-
-                    <!-- Content Section -->
                     <div class="block-section">
                         <table class="table table-borderless table-striped table-vcenter">
                             <tbody>
@@ -181,14 +161,56 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <!-- Botão para abrir a modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">
+                            Enviar Email
+                        </button>
                     </div>
-                    <!-- END Content Section -->
                 </div>
             </div>
-            <!-- END Coluna de Conteúdo Adicional -->
         </div>
-        <!-- END Row -->
     </div>
-    <!-- END Customer Content -->
+
+
+    <!-- Modal para enviar o email -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailModalLabel">Enviar Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('send.email') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="cotacao_id" value="{{ $cotacao->id }}">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $cotacao->email }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="conteudo">Conteúdo</label>
+                        <textarea class="form-control ckeditor" id="conteudo" name="conteudo" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Inclua o CKEditor -->
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('conteudo');
+    </script>
 
 @stop
