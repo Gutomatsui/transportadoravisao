@@ -78,4 +78,19 @@ class CotacaoController extends Controller
         // Retorna a visualização com a cotação encontrada
         return view('backend.cotacao.ver', compact('cotacao'));
     }
+
+    public function novasCotacoes()
+{
+    $novasCotacoes = Cotacao::where('visualizado', false)->count();
+    return response()->json(['contador' => $novasCotacoes]);
+}
+
+
+public function marcarVisualizadas()
+{
+    Cotacao::where('visualizado', false)->update(['visualizado' => true]);
+    return response()->json(['message' => 'Cotações visualizadas.']);
+}
+
+
 }

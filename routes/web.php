@@ -28,7 +28,8 @@ Route::get('cotacoes/create', [CotacaoController::class, 'create'])->name('cotac
 Route::post('cotacoes', [CotacaoController::class, 'store'])->name('cotacoes.store');
 Route::get('cotacao/listar',[CotacaoController::class, 'listar'])->middleware();
 Route::get('cotacao/ver/{id}',[CotacaoController::class, 'ver'])->middleware();
-
+Route::get('/cotacoes/novas', [CotacaoController::class, 'novasCotacoes']);
+Route::post('/cotacoes/marcar-visualizadas', [CotacaoController::class, 'marcarVisualizadas']);
 
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
