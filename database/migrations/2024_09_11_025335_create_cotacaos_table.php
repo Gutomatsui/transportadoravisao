@@ -37,6 +37,7 @@ class CreateCotacaosTable extends Migration
             $table->string('tipo_mercadoria');
             $table->string('resp_mercadoria');
             $table->decimal('valor_nota', 8, 2);
+            $table->boolean('visualizado')->default(false); // campo para verificar se foi visualizado
             $table->timestamps();
         });        
     }

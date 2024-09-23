@@ -97,6 +97,9 @@
                         <!-- Sidebar Navigation -->
                         <ul class="sidebar-nav">
                             <li>
+                                <a href="{{ URL::to('/home') }}" class="sidebar"><i class="gi gi-home"></i>  Painel </a>
+                            </li>
+                            <li>
                                 <a href="#" class="sidebar-nav-menu"><i
                                         class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
                                         class="gi gi-user sidebar-nav-icon"></i><span
@@ -193,11 +196,8 @@
             EcomDashboard.init();
         });
     </script>
-
-
-
-
-
+    
+    
     @yield('scripts')
 </body>
 
