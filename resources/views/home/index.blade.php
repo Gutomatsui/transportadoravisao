@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', $title) 
+@section('title', $title)
 
 @section('content')
 <div class="topo">
@@ -20,29 +20,29 @@
                 <div class="item">
                     <h1>A Transportadora Visão<br>oferece as melhores soluções,<br>com equipamentos especiais<br>para cargas
                         excedentes.</h1>
-                    <img src="img/transparencia-banner.png" class="img-responsive transparencia-banner">
-                    <img src="img/banner-06.png" class="img-responsive" alt="Banner 4" title="Banner 4">
+                    <img src="{{URL::to('public/img/transparencia-banner.png')}}" class="img-responsive transparencia-banner">
+                    <img src="{{URL::to('public/img/banner-06.png')}}" class="img-responsive')}}" alt="Banner 4" title="Banner 4">
                 </div>
                 <!-- /SLIDE 4 -->
                 <!-- SLIDE 2 -->
                 <div class="item active">
                     <h1>Qualquer que seja sua <br>demanda temos o veículo <br>ideal para sua carga.</h1>
-                    <img src="img/transparencia-banner.png" class="img-responsive transparencia-banner">
-                    <img src="img/banner-05.png" class="img-responsive" alt="Banner 2" title="Banner 2">
+                    <img src="{{URL::to('public/img/transparencia-banner.png')}}" class="img-responsive transparencia-banner">
+                    <img src="{{URL::to('public/img/banner-05.png')}}" class="img-responsive" alt="Banner 2" title="Banner 2">
                 </div>
                 <!-- /SLIDE 2 -->
                 <!-- SLIDE 3 -->
                 <div class="item">
                     <h1>Com os melhores<br> equipamentos para os <br>trabalhos mais pesados.</h1>
-                    <img src="img/transparencia-banner.png" class="img-responsive transparencia-banner">
-                    <img src="img/banner-04.png" class="img-responsive" alt="Banner 3" title="Banner 3">
+                    <img src="{{URL::to('public/img/transparencia-banner.png')}}" class="img-responsive transparencia-banner">
+                    <img src="{{URL::to('public/img/banner-04.png')}}" class="img-responsive" alt="Banner 3" title="Banner 3">
                 </div>
                 <!-- /SLIDE 3 -->
                 <!-- SLIDE 1 -->
                 <div class="item">
                     <h1>Sua carga transportada<br>com qualidade e segurança.</h1>
-                    <img src="img/transparencia-banner.png" class="img-responsive transparencia-banner">
-                    <img src="img/banner-01.jpg" class="img-responsive" alt="Banner 1" title="Banner 1">
+                    <img src="{{URL::to('public/img/transparencia-banner.png')}}" class="img-responsive transparencia-banner">
+                    <img src="{{URL::to('public/img/banner-01.jpg')}}" class="img-responsive" alt="Banner 1" title="Banner 1">
                 </div>
                 <!-- /SLIDE 1 -->
             </div>
@@ -90,7 +90,7 @@
                         <div class="home-bloco">
                             <a href="cotacao">
                                 <div class="home-bloco-imagem">
-                                    <img src="img/home-cotacao-online.jpg" class="img-responsive">
+                                    <img src="{{URL::to('public/img/home-cotacao-online.jpg')}}" class="img-responsive">
                                 </div>
                                 <span>Cotação Online</span>
                             </a>
@@ -104,7 +104,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-transporte-rodoviario.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-transporte-rodoviario.jpg')}}">
                         </div>
                         <h4>Transportes Rodoviários</h4>
                     </a>
@@ -114,7 +114,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-transporte-de-produtos-perigosos.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-transporte-de-produtos-perigosos.jpg')}}">
                         </div>
                         <h4>Produtos Perigosos</h4>
                     </a>
@@ -125,7 +125,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-otm.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-otm.jpg')}}">
                         </div>
                         <h4>Operador de Transporte Multimodal</h4>
                     </a>
@@ -137,7 +137,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-armazenagem-de-mercadorias.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-armazenagem-de-mercadorias.jpg')}}">
                         </div>
                         <h4>Armazenagem de Mercadorias</h4>
                     </a>
@@ -149,7 +149,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-locacao-de-equipamentos.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-locacao-de-equipamentos.jpg')}}">
                         </div>
                         <h4>Locação de Equipamentos</h4>
                     </a>
@@ -159,7 +159,7 @@
                 <div class="col-md-4 home-servicos-item">
                     <a href="">
                         <div class="home-servicos-item-imagem">
-                            <img class="mobile" src="img/servicos/mobile-transporte-de-mudancas.jpg">
+                            <img class="mobile" src="{{URL::to('public/img/servicos/mobile-transporte-de-mudancas.jpg')}}">
                         </div>
                         <h4>Transporte de Mudanças</h4>
                     </a>
@@ -177,12 +177,12 @@
 
     <div class="mapa">
         <div class="mapa-unidade-santos">
-            <div class="mapa-legenda"><img src="img/bandeira-de-sao-paulo.png"> Unidade Santos</div>
+            <div class="mapa-legenda"><img src="{{URL::to('public/img/bandeira-de-sao-paulo.png')}}"> Unidade Santos</div>
             <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="330" id="gmap_canvas" src="https://maps.google.com/maps?q=Pra%C3%A7a%20da%20Rep%C3%BAblica,%2062%20conj%20144%20Centro%20-%20Santos%20-%20SP&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
     </div>
 
-    
+
 
 
 @stop

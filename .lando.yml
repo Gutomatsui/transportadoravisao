@@ -1,7 +1,7 @@
 name: transportadoravisao
 recipe: laravel
 config:
-  webroot: ./public
+  webroot: ./
   database: mysql
   xdebug: true
   php: '8.2'

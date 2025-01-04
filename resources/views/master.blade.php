@@ -7,9 +7,9 @@
 <meta name="author" content="matsuitecnologia.com.br">
 <title>{{ $title ?? 'Transportadora visao' }}</title> <!-- Título dinâmico -->
 
-<link href="{{ URL::to('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
-<link href="{{ URL::to('css/estilo/estilo.css') }}" rel="stylesheet">
-<link href="{{ URL::to('css/responsivo/responsivo.css') }}" rel="stylesheet">
+<link href="{{ URL::to('public/css/bootstrap/bootstrap.css') }}" rel="stylesheet">
+<link href="{{ URL::to('public/css/estilo/estilo.css') }}" rel="stylesheet">
+<link href="{{ URL::to('public/css/responsivo/responsivo.css') }}" rel="stylesheet">
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -25,7 +25,7 @@
                 <!-- LOGO -->
                 <div class="logo-responsivo">
                     <a href="">
-                        <img class="img-responsive" src="img/logo-transportadora-visao.png">
+                        <img class="img-responsive" src="{{URL::to('public/img/logo-transportadora-visao.png')}}">
                     </a>
                 </div>
                 <!-- /LOGO -->
@@ -67,8 +67,8 @@
 
         <!-- LOGO -->
         <div class="logo">
-            <a href=""><img class="img-responsive" src="img/logo-transportadora-visao.png"></a>
-            <img class="img-responsive" src="img/sassmaq-empresa-aprovada-transporte-rodoviario.png">
+            <a href=""><img class="img-responsive" src="{{URL::to('public/img/logo-transportadora-visao.png')}}"></a>
+            <img class="img-responsive" src="{{URL::to('public/img/sassmaq-empresa-aprovada-transporte-rodoviario.png')}}">
         </div>
         <!-- /LOGO -->
 
@@ -182,17 +182,23 @@
             Transportadora Visão &copy; <?php echo date('Y'); ?> - Todos os direitos são reservados.
         </div>
         <div class="pull-right">
-            Desenvolvido por:
+            <!-- Desenvolvido por:
             <a href="http://incatel.com.br" target="_blank" title="Incatel TI">
                 <img src="img/logotipo-incatel-ti.png" alt="Incatel TI" title="Incatel TI">
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
 
+<<<<<<< Updated upstream
 <script src="{{ URL::to('js/jquery/jquery.min.js') }}"></script>
 <script src="{{ URL::to('js/bootstrap/bootstrap.min.js') }}"></script>
 
+=======
+<script src="{{ URL::to('public/js/jquery/jquery.min.js') }}"></script>
+<script src="{{ URL::to('public/js/bootstrap/bootstrap.min.js') }}"></script>
+<script src="{{ URL::to('public/js/jquery.mask.js') }}"></script>
+>>>>>>> Stashed changes
 
 <script src="http://maps.google.com/maps/api/js?sensor=true&async=2"></script>
 <script type="text/javascript">

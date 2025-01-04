@@ -3,7 +3,7 @@
 
   <!-- RECIPIENTE FULL -->
   <div class="container-fluid">
-  
+
     <!-- BREADCRUMB -->
     <div class="home-frase">
         <div class="container">
@@ -19,8 +19,8 @@
     <!-- /BREADCRUMB -->
 
     <!-- RECIPIENTE -->
-    <div class="container fundo-branco">                
-        
+    <div class="container fundo-branco">
+
             <!-- LINHA -->
             <div class="row">
                 <!-- TITULO -->
@@ -30,9 +30,9 @@
                         <p>A frota é composta por mais de 120 caminhões, entre próprios, agregados e terceirizados, todos devidamente cadastrados e monitorados e rastreados, 24 horas por dia.</p>
                     </div>
                 </div>
-                <!-- /TITULO -->                        
+                <!-- /TITULO -->
             </div>
-            <!-- /LINHA --> 
+            <!-- /LINHA -->
             <!-- LINHA -->
             <div class="row">
                 <!-- TITULO -->
@@ -50,7 +50,7 @@
                                 Caminhoneta:
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/caminhoneta.jpg" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/caminhoneta.jpg')}}" />
                             Veículo misto destinado ao transporte de passageiros e carga no mesmo compartimento. Permitindo o transporte rápido de pequenas cargas e o acesso a cidades com restrição de horário para caminhões
                         </p>
                     </div>
@@ -63,7 +63,7 @@
                                 Veículo Urbano de Carga (VUC):
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/vuc.png" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/vuc.png')}}" />
                             O VUC é o caminhão de menor porte, mais apropriado para áreas urbanas. Esta característica de veículo deve respeitar as seguintes características: largura máxima de 2,2 metros; comprimento máximo de 6,3 metros e limite de emissão de poluentes.  A capacidade do VUC é de 3 toneladas.
                         </p>
                     </div>
@@ -76,7 +76,7 @@
                                 Toco ou caminhão semi-pesado:
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/toco.png" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/toco.png')}}" />
                             Caminhão que tem eixo simples na carroceria, ou seja,  um eixo frontal e outro traseiro de rodagem simples. Sua capacidade é de até 6 toneladas, tem peso bruto máximo de 16 toneladas e comprimento máximo de 14 metros.
                         </p>
                     </div>
@@ -89,7 +89,7 @@
                                 Truck ou caminhão pesado:
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/truck.png" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/truck.png')}}" />
                             Caminhão que tem o eixo duplo na carroceria, ou seja, dois eixos juntos. O objetivo é poder carregar carga maior e proporcionar melhor desempenho ao veículo. Um dos eixos traseiros deve necessariamente receber a força do motor. Sua capacidade é de 10 a 14 toneladas, possui peso bruto máximo de 23 toneladas e seu comprimento é também de 14 metros, como no caminhão toco.
                         </p>
                     </div>
@@ -102,7 +102,7 @@
                                 Cavalo Mecânico ou caminhão extra-pesado:
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/cm.png" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/cm.png')}}" />
                             É o conjunto formado pela cabine, motor e rodas de tração do caminhão com eixo simples (apenas 2 rodas de tração). Pode-ser engatado em vários tipos de carretas e semi-reboques, para o transporte.
                         </p>
                     </div>
@@ -115,7 +115,7 @@
                                 Cavalo Mecânico Trucado ou LS:
                             </h5></b>
                             </br>
-                            <img class="img-cavalos" src="img/cavalos/cm-trucado.png" />
+                            <img class="img-cavalos" src="{{URL::to('public/img/cavalos/cm-trucado.png')}}" />
                             Tem o mesmo conceito do cavalo mecânico, mas com o diferencial de ter eixo duplo em seu conjunto, para poder carregar mais peso. Assim o peso da carga do semi-reboque distribui-se por mais rodas, e a pressão exercida por cada uma no chão é menor.
                         </p>
                     </div>
@@ -140,13 +140,13 @@
                             <tr>
                                 <th><b>EQUIPAMENTOS</b></th>
                                 <th class="text-center"><b>PBTC/DOC</b></th>
-                                <th class="text-center"><b>Eixos</b></th>                                        
+                                <th class="text-center"><b>Eixos</b></th>
                             </tr>
                             <tr>
                                 <td>Carreta Extensiva</td>
                                 <td class="text-center">35,0 TONS</td>
-                                <td class="text-center">3</td>                                        
-                            </tr>                                                                               
+                                <td class="text-center">3</td>
+                            </tr>
                             <tr>
                                 <td>Carreta Longa / Loks</td>
                                 <td class="text-center">35,6 TONS</td>
@@ -204,20 +204,20 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>                       
+                </div>
                 <!-- /CARACTERISTICAS EQUIPAMENTOS ESPECIAIS -->
             </div>
             <!-- /LINHA -->
             <!-- LINHA -->
             <div class="row">
                 <!-- TITULO -->
-                <div class="col-md-12 col-sm-12 col-xs-12">                            
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <p class="text-justify">Não encontrou o equipamento que você procura? Entre em contato. Nós temos a solução certa para você!</p>
                 </div>
-                <!-- /TITULO -->                        
+                <!-- /TITULO -->
             </div>
             <!-- /LINHA -->
     </div>
-    <!-- /RECIPIENTE -->  
+    <!-- /RECIPIENTE -->
 
 @stop

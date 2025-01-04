@@ -15,7 +15,7 @@
     </div>
 </div>
 <!-- /BREADCRUMB -->
-    <div class="container fundo-branco">                
+    <div class="container fundo-branco">
         <!-- COLUNA -->
         <div class="col-md-12">
             <!-- LINHA -->
@@ -29,59 +29,59 @@
                 </div>
                 <!-- /TITULO -->
                 <!-- SESSÃO -->
-                <div class="col-md-12 col-sm-12 col-xs-12">                            
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <!-- CLIENTES -->
-                    <div id="clientes" class="row">                                
+                    <div id="clientes" class="row">
                         <div class="item col-md-3">
-                            <img src="img/clientes/01.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/01.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/02.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/02.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/03.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/03.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/04.gif" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/04.gif')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/05.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/05.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/06.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/06.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/07.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/07.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/08.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/08.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/09.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/09.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/10.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/10.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/11.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/11.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/12.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/12.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/13.jpg" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/13.jpg')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/14.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/14.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/15.png" class="center-block">
+                            <img src="{{URL::to('public/img/clientes/15.png')}}" class="center-block">
                         </div>
                         <div class="item col-md-3">
-                            <img src="img/clientes/16.png" class="center-block">
-                        </div>                                
+                            <img src="{{URL::to('public/img/clientes/16.png')}}" class="center-block">
+                        </div>
                     </div>
-                    <!-- /CLIENTES -->                                                    
+                    <!-- /CLIENTES -->
                 </div>
                 <!-- /SESSÃO -->
             </div>
@@ -89,5 +89,5 @@
         </div>
         <!-- /COLUNA -->
     </div>
-    <!-- /RECIPIENTE -->  
+    <!-- /RECIPIENTE -->
 @stop
