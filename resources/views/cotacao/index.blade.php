@@ -41,17 +41,22 @@
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone (com DDD)</label>
-                    <input type="text" class="form-control" name="telefone" required>
+                    <input type="text" class="form-control" name="telefone" id="telefone" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="telefone">CNPJ do emitente</label>
-                    <input type="text" class="form-control" name="cnpj_emitente" required>
+                    <label for="cnpj_emitente">CNPJ do emitente</label>
+                    <input type="text" class="form-control" name="cnpj_emitente" id="cnpj_emitente" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="telefone">Responsabilidade do frete</label>
+                    <label for="resp_mercadoria">Responsabilidade do frete</label>
                     <input type="text" class="form-control" name="resp_mercadoria" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="previsao_transprte">Previsão do transporte</label>
+                    <input type="date" class="form-control" name="previsao_transporte" required>
                 </div>
                 <a class="btn btn-primary next-step">Próximo</a>
             </div>
@@ -100,7 +105,7 @@
 
                 <div class="form-group">
                     <label for="endereco-destino">CNPJ do destinatario</label>
-                    <input type="text" class="form-control" name="cnpj_destinatario">
+                    <input type="text" class="form-control" name="cnpj_destinatario" id="cnpj_destinatario">
                 </div>
                 <!-- CEP Destino -->
                 <div class="form-group">
@@ -143,18 +148,39 @@
                     <label for="quantidade">Quantidade</label>
                     <input type="text" class="form-control" name="quantidade">
                 </div>
-                <div class="form-group">
+                <div class="input-group">
                     <label for="comprimento">Comprimento</label>
-                    <input type="text" class="form-control" name="comprimento">
+                    <input type="text" id="comprimento" name="comprimento" class="form-control">
+                    <div class="input-group-btn">
+                        <select class="form-control btn btn-primary" name="comprimento_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                            <option value="Centimetros" selected>CM</option>
+                            <option value="Metros">M</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="largura">Largura</label>
-                    <input type="text" class="form-control" name="largura">
+
+                <div class="input-group">
+                    <label for="Largura">Largura</label>
+                    <input type="text" id="largura" name="largura" class="form-control" >
+                    <div class="input-group-btn">
+                        <select class="form-control btn btn-primary" name="largura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                            <option value="Centimetros" selected>CM</option>
+                            <option value="Metros">M</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="altura">Altura</label>
-                    <input type="text" class="form-control" name="altura">
+
+                <div class="input-group">
+                    <label for="comprimento">altura</label>
+                    <input type="number" class="form-control" name="altura" min="0" max="2147483647" required>
+                    <div class="input-group-btn">
+                        <select class="form-control btn btn-primary" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                            <option value="Centimetros" selected>CM</option>
+                            <option value="Metros">M</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="peso-total">Peso total (kg)</label>
                     <input type="text" class="form-control" name="peso_total">
@@ -165,7 +191,7 @@
                 </div>
                 <div class="form-group">
                     <label for="peso-total">Valor da nota fiscal</label>
-                    <input type="text" class="form-control" name="valor_nota">
+                    <input type="text" class="form-control" name="valor_nota" id="valor_nota">
                 </div>
                 <a class="btn btn-default prev-step">Anterior</a>
                 <button type="submit" class="btn btn-success">Enviar</button>
@@ -174,42 +200,53 @@
     </form>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Scripts para navegação entre os steps e preenchimento automático de CEP -->
 <script>
     $(document).ready(function() {
+        $('#telefone').mask('(00)00000-0000');
+        $('#cnpj_emitente').mask('00.000.000/0000-00', {reverse: true});
+        $('#cnpj_destinatario').mask('00.000.000/0000-00', {reverse: true});
+        $('#cep-origem').mask('00000-000', {reverse: true});
+        $('#cep-destino').mask('00000-000', {reverse: true});
+        $('#valor_nota').mask('00.000,00', {reverse: true});
         // Captura o envio do formulário
         $('#cotacaoForm').on('submit', function(event) {
-            event.preventDefault(); // Previne o envio padrão do formulário
+    event.preventDefault(); // Previne o envio padrão do formulário
 
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('cotacoes.store') }}',
-                data: $(this).serialize(), // Serializa os dados do formulário
-                success: function(response) {
-                    if (response.success) {
-                        // Exibe a mensagem de sucesso
-                        $('.alert').remove();
-                        $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
+    // Remover a máscara do campo 'valor_nota' antes de enviar o formulário
+    var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
+    $('#valor_nota').val(valorNota); // Atualiza o campo sem a máscara
 
-                        // Aguarda 5 segundos antes de recarregar a página
-                        setTimeout(function() {
-                            location.reload();
-                        }, 5000); // 5000 milissegundos = 5 segundos
-                    } else if (response.error) {
-                        // Exibe a mensagem de erro
-                        $('.alert').remove();
-                        $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
-                    }
-                },
-                error: function(xhr) {
-                    // Exibe mensagem de erro caso a requisição falhe
-                    $('.alert').remove();
-                    $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
-                }
-            });
-        });
+    $.ajax({
+        type: 'POST',
+        url: '{{ route('cotacoes.store') }}',
+        data: $(this).serialize(), // Serializa os dados do formulário
+        success: function(response) {
+            if (response.success) {
+                // Exibe a mensagem de sucesso
+                $('.alert').remove();
+                $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
+
+                // Aguarda 5 segundos antes de recarregar a página
+                setTimeout(function() {
+                    location.reload();
+                }, 5000); // 5000 milissegundos = 5 segundos
+            } else if (response.error) {
+                // Exibe a mensagem de erro
+                $('.alert').remove();
+                $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
+            }
+        },
+        error: function(xhr) {
+            // Exibe mensagem de erro caso a requisição falhe
+            $('.alert').remove();
+            $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
+        }
+    });
+});
 
         // Navegação entre steps
         $('.next-step').click(function() {

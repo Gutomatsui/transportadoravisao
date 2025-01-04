@@ -36,6 +36,21 @@ class Cotacao extends Model
         'cnpj_destinatario',
         'tipo_mercadoria',
         'resp_mercadoria',
-        'valor_nota'
+        'valor_nota',
+        'comprimento_unidade_medida',
+        'altura_unidade_medida',
+        'largura_unidade_medida',
+        'previsao_transporte',
     ];
+
+    public function emails()
+{
+    return $this->hasMany(Email::class, 'cotacao_id');
+}
+
+protected $casts = [
+    'previsao_transporte' => 'datetime',
+];
+
+
 }
