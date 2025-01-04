@@ -34,4 +34,4 @@ Route::post('/cotacoes/marcar-visualizadas', [CotacaoController::class, 'marcarV
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/sistema-visao', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

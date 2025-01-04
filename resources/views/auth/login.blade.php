@@ -10,13 +10,13 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{URL::to ('backend/img/favicon.png')}}">
-        <link rel="apple-touch-icon" href="{{URL::to('backend/img/icon57.png')}}" sizes="57x57">
-        <link rel="stylesheet" href="{{URL::to('backend/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{URL::to('backend/css/plugins.css')}}">
-        <link rel="stylesheet" href="{{URL::to('backend/css/main.css')}}">
-        <link rel="stylesheet" href="{{URL::to('backend/css/themes.css')}}">
-        <script src="{{URL::to('backend/js/vendor/modernizr.min.js')}}"></script>
+        <link rel="shortcut icon" href="{{URL::to('public/backend/img/favicon.png')}}">
+        <link rel="apple-touch-icon" href="{{URL::to('public/backend/img/icon57.png')}}" sizes="57x57">
+        <link rel="stylesheet" href="{{URL::to('public/backend/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{URL::to('public/backend/css/plugins.css')}}">
+        <link rel="stylesheet" href="{{URL::to('public/backend/css/main.css')}}">
+        <link rel="stylesheet" href="{{URL::to('public/backend/css/themes.css')}}">
+        <script src="{{URL::to('public/backend/js/vendor/modernizr.min.js')}}"></script>
     </head>
     <body>
          <!-- Login Alternative Row -->
@@ -26,7 +26,7 @@
                     <div id="login-alt-container">
                         <!-- Title -->
                         <h1 class="push-top-bottom">
-                          <img src="{{Url::to('/img/logo-transportadora-visao.png')}}"><br>
+                          <img src="{{Url::to('public/img/logo-transportadora-visao.png')}}"><br>
                             <small>Entre com seu Login e senha </small>
                         </h1>
                         <!-- END Title -->
@@ -77,14 +77,14 @@
                                 <div class="form-group form-actions">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-0">
                                     <div class="col-xs-8 text-right">
                                         <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
-                                       
+
                                     </div>
                                 </div>
                             </form>
@@ -111,9 +111,9 @@
         </div>
 
         <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
-        <script src="{{URL::to('backend/js/vendor/jquery.min.js')}}"></script>
-        <script src="{{URL::to('backend/js/vendor/bootstrap.min.js')}}"></script>
-        <script src="{{URL::to('backend/js/plugins.js')}}"></script>
-        <script src="{{URL::to('backend/js/app.js')}}"></script>
+        <script src="{{URL::to('public/backend/js/vendor/jquery.min.js')}}"></script>
+        <script src="{{URL::to('public/backend/js/vendor/bootstrap.min.js')}}"></script>
+        <script src="{{URL::to('public/backend/js/plugins.js')}}"></script>
+        <script src="{{URL::to('public/backend/js/app.js')}}"></script>
     </body>
 </html>

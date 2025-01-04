@@ -19,7 +19,7 @@
                     <!-- Customer Info -->
                     <div class="block-section text-center">
                         <a href="javascript:void(0)">
-                            <img src="{{ URL::to('backend/img/placeholders/avatars/avatar4@2x.jpg') }}" alt="avatar"
+                            <img src="{{ URL::to('public/backend/img/placeholders/avatars/avatar4@2x.jpg') }}" alt="avatar"
                                 class="img-circle">
                         </a>
                         <h3>

@@ -15,22 +15,22 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="{{ URL::to('backend/img/favicon.png') }}">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon57.png') }}" sizes="57x57">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon72.png') }}" sizes="72x72">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon76.png') }}" sizes="76x76">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon114.png') }}" sizes="114x114">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon120.png') }}" sizes="120x120">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon144.png') }}" sizes="144x144">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon152.png') }}" sizes="152x152">
-    <link rel="apple-touch-icon" href="{{ URL::to('backend/img/icon180.png') }}" sizes="180x180">
+    <link rel="shortcut icon" href="{{ URL::to('public/backend/img/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon57.png') }}" sizes="57x57">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon72.png') }}" sizes="72x72">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon76.png') }}" sizes="76x76">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon114.png') }}" sizes="114x114">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon120.png') }}" sizes="120x120">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon144.png') }}" sizes="144x144">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon152.png') }}" sizes="152x152">
+    <link rel="apple-touch-icon" href="{{ URL::to('public/backend/img/icon180.png') }}" sizes="180x180">
 
-    <link rel="stylesheet" href="{{ URL::to('backend/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('backend/css/plugins.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('backend/css/main.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('backend/css/themes.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('public/backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('public/backend/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('public/backend/css/main.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('public/backend/css/themes.css') }}">
 
-    <script src="{{ URL::to('backend/js/vendor/modernizr.min.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/vendor/modernizr.min.js') }}"></script>
 </head>
 
 <body>
@@ -75,7 +75,7 @@
                         <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
                             <div class="sidebar-user-avatar">
                                 <a href="page_ready_user_profile.html">
-                                    <img src="{{ URL::to('backend/img/placeholders/avatars/avatar2.jpg') }}"
+                                    <img src="{{ URL::to('public/backend/img/placeholders/avatars/avatar2.jpg') }}"
                                         alt="avatar">
                                 </a>
                             </div>
@@ -108,11 +108,11 @@
                                     <li>
                                         <a href="{{ URL::to('cotacao/listar') }}">Listagem de cotação</a>
                                     </li>
-                                    
+
                                 </ul>
                             </li>
 
-                           
+
                         </ul> <!-- END Sidebar Navigation -->
                     </div>
                     <!-- END Sidebar Content -->
@@ -181,23 +181,23 @@
 
 
     <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
-    <script src="{{ URL::to('backend/js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ URL::to('backend/js/vendor/bootstrap.min.js') }}"></script>
-    <script src="{{ URL::to('backend/js/plugins.js') }}"></script>
-    <script src="{{ URL::to('backend/js/app.js') }}"></script>
-    <script src="{{ URL::to('backend/js/pages/uiProgress.js') }}"></script>
-    <script src="{{ URL::to('backend/js/vendor/jquery.mask.js') }}"></script>
-    <script src="{{ URL::to('backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ URL::to('backend/js/pages/ecomDashboard.js') }}"></script>
-    <script src="{{ URL::to('backend/js/jsbarcode.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/vendor/jquery.min.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/plugins.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/app.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/pages/uiProgress.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/vendor/jquery.mask.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/pages/ecomDashboard.js') }}"></script>
+    <script src="{{ URL::to('public/backend/js/jsbarcode.js') }}"></script>
 
     <script>
         $(function() {
             EcomDashboard.init();
         });
     </script>
-    
-    
+
+
     @yield('scripts')
 </body>
 

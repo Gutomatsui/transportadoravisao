@@ -40,7 +40,7 @@
     <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;" class="content">
         <tr>
             <td align="center" bgcolor="#0984e3" style="padding: 20px; color: #ffffff; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;">
-                <img src="https://transportadoravisao.com.br/img/logo-transportadora-visao.png" alt="Transportadora Visão Logo" width="500" height="200" style="display:block;" /><br/>
+                <img src="https://transportadoravisao.com.br/public/img/logo-transportadora-visao.png" alt="Transportadora Visão Logo" width="500" height="200" style="display:block;" /><br/>
                 Agradecemos seu contato, {{ $cotacao->nome }}
             </td>
         </tr>
@@ -51,17 +51,17 @@
                 <div class="progress-container">
                     <!-- Ícone de Caminhão Origem -->
                     <div class="progress-item">
-                        <img src="https://www.transportadoravisao.com.br/img/truck-origem.png" alt="Origem" width="50" style="display:block;" />
+                        <img src="https://www.transportadoravisao.com.br/public/img/truck-origem.png" alt="Origem" width="50" style="display:block;" />
                         <p><strong>Origem</strong></p>
                         <p>{{ $cotacao->endereco_origem }} - {{ $cotacao->cidade_origem }}</p>
                     </div>
 
                     <!-- Linha entre caminhões -->
-                    <div class="progress-line"><img src="https://www.transportadoravisao.com.br/img/seta-direita.png" alt="Origem" width="50" style="display:block;" /></div>
+                    <div class="progress-line"><img src="https://www.transportadoravisao.com.br/public/img/seta-direita.png" alt="Origem" width="50" style="display:block;" /></div>
 
                     <!-- Ícone de Caminhão Destino -->
                     <div class="progress-item">
-                        <img src="https://www.transportadoravisao.com.br/img/truck-origem.png" alt="Destino" width="50" style="display:block;" />
+                        <img src="https://www.transportadoravisao.com.br/public/img/truck-origem.png" alt="Destino" width="50" style="display:block;" />
                         <p><strong>Destino</strong></p>
                         <p>{{ $cotacao->endereco_destino }} - {{ $cotacao->cidade_destino }}</p>
                     </div>
