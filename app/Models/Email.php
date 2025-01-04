@@ -13,11 +13,14 @@ class Email extends Model
         'cotacao_id', // Foreign key (FK) para a cotação
         'titulo',
         'conteudo',
+        'status',
     ];
 
     // Relacionamento com a tabela de cotações (1 cotação pode ter vários emails)
     public function cotacao()
     {
-        return $this->belongsTo(Cotacao::class);
+        return $this->belongsTo(Cotacao::class, 'cotacao_id');
     }
+
+
 }

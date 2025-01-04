@@ -32,13 +32,17 @@ class CotacaoController extends Controller
             'quantidade' => 'required|integer|min:1',
             'comprimento' => 'required|numeric|min:0',
             'largura' => 'required|numeric|min:0',
-            'altura' => 'required|numeric|min:0',
+            'altura' => 'required|numeric|min:0|max:2147483647',
             'peso_total' => 'required|numeric|min:0',
             'cnpj_emitente' => 'nullable|string|max:255',
             'cnpj_destinatario' => 'nullable|string|max:255',
             'tipo_mercadoria' => 'nullable|string|max:255',
             'resp_mercadoria' => 'nullable|string|max:255',
-            'valor_nota' => 'required|numeric|min:0'
+            'valor_nota' => 'required|numeric|min:0',
+            'comprimento_unidade_medida' => 'required|string',
+            'altura_unidade_medida' => 'required|string',
+            'largura_unidade_medida' => 'required|string',
+            'previsao_transporte' => 'date',
         ]);
 
         try {
@@ -80,16 +84,40 @@ class CotacaoController extends Controller
     }
 
     public function novasCotacoes()
-{
-    $novasCotacoes = Cotacao::where('visualizado', false)->count();
-    return response()->json(['contador' => $novasCotacoes]);
-}
+    {
+        $novasCotacoes = Cotacao::where('visualizado', false)->count();
+        return response()->json(['contador' => $novasCotacoes]);
+    }
 
 
-public function marcarVisualizadas()
+    public function marcarVisualizadas()
+    {
+        Cotacao::where('visualizado', false)->update(['visualizado' => true]);
+        return response()->json(['message' => 'Cotações visualizadas.']);
+    }
+
+
+    public function buscar(Request $request)
 {
-    Cotacao::where('visualizado', false)->update(['visualizado' => true]);
-    return response()->json(['message' => 'Cotações visualizadas.']);
+    // Valida o campo de busca
+    $request->validate([
+        'name' => 'nullable|string|max:255',
+    ]);
+
+    // Captura o termo de busca
+    $termo = $request->input('name');
+
+    // Busca as cotações pelo termo (Cliente, Status, etc.)
+    $cotacao = Cotacao::where('nome', 'LIKE', "%{$termo}%")
+                ->orWhere('email', 'LIKE', "%{$termo}%")
+                ->orWhere('telefone', 'LIKE', "%{$termo}%")
+                ->orWhere('endereco_origem', 'LIKE', "%{$termo}%")
+                ->orWhere('endereco_destino', 'LIKE', "%{$termo}%")
+                ->orWhere('cnpj_emitente', 'LIKE', "%{$termo}%")
+                ->paginate(10);
+
+    // Retorna a view com os resultados
+    return view('backend.cotacao.listar', compact('cotacao'));
 }
 
 
