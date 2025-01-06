@@ -172,7 +172,7 @@
 
                 <div class="input-group">
                     <label for="comprimento">altura</label>
-                    <input type="number" class="form-control" name="altura" min="0" max="2147483647" required>
+                    <input type="text" class="form-control" name="altura" min="0" max="2147483647" required>
                     <div class="input-group-btn">
                         <select class="form-control btn btn-primary" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
                             <option value="Centimetros" selected>CM</option>

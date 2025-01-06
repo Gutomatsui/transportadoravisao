@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class siteController extends Controller
 {
     public function index(){
-      return view('home.index',['title' =>'']);   
+      return view('home.index',['title' =>'']);
     }
 
     public function sobre(){
@@ -32,5 +32,9 @@ class siteController extends Controller
 
     public function cotacao(){
       return view('cotacao.index',['title' => 'Cotação']);
+    }
+
+    public function localizacao(){
+      return view('localizacao.index', ['title' => 'Localização']);
     }
 }

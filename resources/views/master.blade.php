@@ -125,7 +125,6 @@
                         <li><i class="glyphicon glyphicon-earphone"></i> Telefone
                             <h5>+55 (13) 3216-1910</h5>
                             <h5>+55 (13) 3219-1033</h5>
-                            <h5>+55 (13) 3219-1699</h5>
                         </li>
                         <li><i class="glyphicon glyphicon-envelope"></i> E-mail
                             <h5>falecom@transportadoravisao.com.br</h5>

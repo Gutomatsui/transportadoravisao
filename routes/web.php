@@ -22,6 +22,7 @@ Route::get('/servicos',[siteController::class,'servicos']);
 Route::get('/frota',[siteController::class,'frota']);
 Route::get('/clientes',[siteController::class,'clientes']);
 Route::get('/cotacao',[siteController::class,'cotacao']);
+Route::get('/localizacao',[siteController::class,'localizacao']);
 
 
 Route::get('cotacoes/create', [CotacaoController::class, 'create'])->name('cotacoes.create');

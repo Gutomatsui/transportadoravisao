@@ -79,6 +79,10 @@
                                 <td>{{ $cotacao->largura }}</td>
                             </tr>
                             <tr>
+                                <td class="text-right"><strong>Altura</strong></td>
+                                <td>{{ $cotacao->altura }}</td>
+                            </tr>
+                            <tr>
                                 <td class="text-right"><strong>Peso Total</strong></td>
                                 <td>{{ $cotacao->peso_total }}</td>
                             </tr>
