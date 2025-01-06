@@ -32,6 +32,10 @@ Route::get('/cotacoes/novas', [CotacaoController::class, 'novasCotacoes']);
 Route::post('/cotacoes/marcar-visualizadas', [CotacaoController::class, 'marcarVisualizadas']);
 
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
+Route::get('cotacao/emails/{id}', [EmailController::class, 'verEmails'])->name('cotacao.emails');
+Route::post('orcamento/buscar', [CotacaoController::class, 'buscar'])->name('orcamento.buscar');
+
+
 
 Auth::routes();
-Route::get('/sistema-visao', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

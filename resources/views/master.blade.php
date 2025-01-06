@@ -190,15 +190,9 @@
     </div>
 </div>
 
-<<<<<<< Updated upstream
-<script src="{{ URL::to('js/jquery/jquery.min.js') }}"></script>
-<script src="{{ URL::to('js/bootstrap/bootstrap.min.js') }}"></script>
-
-=======
 <script src="{{ URL::to('public/js/jquery/jquery.min.js') }}"></script>
 <script src="{{ URL::to('public/js/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ URL::to('public/js/jquery.mask.js') }}"></script>
->>>>>>> Stashed changes
 
 <script src="http://maps.google.com/maps/api/js?sensor=true&async=2"></script>
 <script type="text/javascript">
@@ -219,13 +213,13 @@
         /*
         var mapa2;
         var marcador2 = new google.maps.LatLng(-3.8082246010570433, -38.41715969999996);
-        
+
         var myOptions = {
             zoom: 15,
             center: new google.maps.LatLng(-3.8082246010570433, -38.41715969999996),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
-        };    
+        };
         mapa2 = new google.maps.Map(document.getElementById("mapa-unidade-fortaleza"), myOptions);
         */
         /*
@@ -235,11 +229,11 @@
                 stylers: [
                   { color: "#ffffff" }
                 ]
-            }, {             
+            }, {
                 elementType: "labels.text.stroke",     //Cor da Borda dos textos do mapa
                 stylers: [
                     { visibility:"off" }            //Oculta a Borda
-                ] 
+                ]
             }, {
                 "elementType": "geometry.fill",     //Cor do mapa
                 "stylers": [

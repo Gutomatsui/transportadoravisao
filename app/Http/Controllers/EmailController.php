@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cotacao;
+use App\Models\Email; // Modelo da tabela "emails"
 use Mail;
 
 class EmailController extends Controller
@@ -15,18 +16,41 @@ class EmailController extends Controller
             'titulo' => 'required|string|max:255',
             'email' => 'required|email',
             'conteudo' => 'required|string',
+            'cotacao_id' => 'required|exists:cotacaos,id', // Valida se a cotação existe
         ]);
 
+        // Busca a cotação pelo ID
         $cotacao = Cotacao::find($request->cotacao_id);
         $titulo = $request->titulo;
         $conteudo = $request->conteudo;
+        $status = $request->status;
+
+        // Salva os dados na tabela "emails"
+        $email = new Email();
+        $email->cotacao_id = $cotacao->id;
+        $email->titulo = $titulo;
+        $email->conteudo = $conteudo;
+        $email->status = $status;
+        $email->save();
 
         // Envia o email com o template 'cotacao.email'
-        Mail::send('backend.cotacao.email', ['cotacao' => $cotacao, 'titulo' => $titulo, 'conteudo' => $conteudo], function($message) use ($request) {
+        Mail::send('backend.cotacao.email', ['cotacao' => $cotacao, 'titulo' => $titulo, 'conteudo' => $conteudo], function ($message) use ($request) {
             $message->to($request->email)
                     ->subject($request->titulo);
         });
 
-        return back()->with('success', 'Email enviado com sucesso!');
+        return back()->with('success', 'Email enviado e registrado com sucesso!');
     }
+
+    public function verEmails($id)
+{
+    // Busca a cotação pelo ID
+    $cotacao = Cotacao::findOrFail($id);
+
+    // Busca os emails relacionados à cotação
+    $emails = $cotacao->emails()->orderBy('created_at', 'desc')->get();
+
+    return view('backend.cotacao.emails', compact('cotacao', 'emails'));
+}
+
 }
