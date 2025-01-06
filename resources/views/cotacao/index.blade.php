@@ -51,7 +51,14 @@
 
                 <div class="form-group">
                     <label for="resp_mercadoria">Responsabilidade do frete</label>
-                    <input type="text" class="form-control" name="resp_mercadoria" required>
+                    <select class="form-control" name="resp_mercadoria" id="resp_mercadoria" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="remetente">Remetente</option>
+                        <option value="expedidor">Expedidor</option>
+                        <option value="destinatario">Destinatário</option>
+                        <option value="recebedor">Recebedor</option>
+                        <option value="tomador">Tomador do serviço</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -152,7 +159,8 @@
                     <label for="comprimento">Comprimento</label>
                     <input type="text" id="comprimento" name="comprimento" class="form-control">
                     <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="comprimento_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                        <select class="form-control btn btn-primary" name="comprimento_unidade_medida"
+                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
                             <option value="Centimetros" selected>CM</option>
                             <option value="Metros">M</option>
                         </select>
@@ -161,9 +169,10 @@
 
                 <div class="input-group">
                     <label for="Largura">Largura</label>
-                    <input type="text" id="largura" name="largura" class="form-control" >
+                    <input type="text" id="largura" name="largura" class="form-control">
                     <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="largura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                        <select class="form-control btn btn-primary" name="largura_unidade_medida"
+                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
                             <option value="Centimetros" selected>CM</option>
                             <option value="Metros">M</option>
                         </select>
@@ -174,7 +183,8 @@
                     <label for="comprimento">altura</label>
                     <input type="text" class="form-control" name="altura" min="0" max="2147483647" required>
                     <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                        <select class="form-control btn btn-primary" name="altura_unidade_medida"
+                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
                             <option value="Centimetros" selected>CM</option>
                             <option value="Metros">M</option>
                         </select>
@@ -205,57 +215,57 @@
 
 <!-- Scripts para navegação entre os steps e preenchimento automático de CEP -->
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#telefone').mask('(00)00000-0000');
-        $('#cnpj_emitente').mask('00.000.000/0000-00', {reverse: true});
-        $('#cnpj_destinatario').mask('00.000.000/0000-00', {reverse: true});
-        $('#cep-origem').mask('00000-000', {reverse: true});
-        $('#cep-destino').mask('00000-000', {reverse: true});
-        $('#valor_nota').mask('00.000,00', {reverse: true});
+        $('#cnpj_emitente').mask('00.000.000/0000-00', { reverse: true });
+        $('#cnpj_destinatario').mask('00.000.000/0000-00', { reverse: true });
+        $('#cep-origem').mask('00000-000', { reverse: true });
+        $('#cep-destino').mask('00000-000', { reverse: true });
+        $('#valor_nota').mask('00.000,00', { reverse: true });
         // Captura o envio do formulário
-        $('#cotacaoForm').on('submit', function(event) {
-    event.preventDefault(); // Previne o envio padrão do formulário
+        $('#cotacaoForm').on('submit', function (event) {
+            event.preventDefault(); // Previne o envio padrão do formulário
 
-    // Remover a máscara do campo 'valor_nota' antes de enviar o formulário
-    var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
-    $('#valor_nota').val(valorNota); // Atualiza o campo sem a máscara
+            // Remover a máscara do campo 'valor_nota' antes de enviar o formulário
+            var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
+            $('#valor_nota').val(valorNota); // Atualiza o campo sem a máscara
 
-    $.ajax({
-        type: 'POST',
-        url: '{{ route('cotacoes.store') }}',
-        data: $(this).serialize(), // Serializa os dados do formulário
-        success: function(response) {
-            if (response.success) {
-                // Exibe a mensagem de sucesso
-                $('.alert').remove();
-                $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cotacoes.store') }}',
+                data: $(this).serialize(), // Serializa os dados do formulário
+                success: function (response) {
+                    if (response.success) {
+                        // Exibe a mensagem de sucesso
+                        $('.alert').remove();
+                        $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
 
-                // Aguarda 5 segundos antes de recarregar a página
-                setTimeout(function() {
-                    location.reload();
-                }, 5000); // 5000 milissegundos = 5 segundos
-            } else if (response.error) {
-                // Exibe a mensagem de erro
-                $('.alert').remove();
-                $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
-            }
-        },
-        error: function(xhr) {
-            // Exibe mensagem de erro caso a requisição falhe
-            $('.alert').remove();
-            $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
-        }
-    });
-});
+                        // Aguarda 5 segundos antes de recarregar a página
+                        setTimeout(function () {
+                            location.reload();
+                        }, 5000); // 5000 milissegundos = 5 segundos
+                    } else if (response.error) {
+                        // Exibe a mensagem de erro
+                        $('.alert').remove();
+                        $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
+                    }
+                },
+                error: function (xhr) {
+                    // Exibe mensagem de erro caso a requisição falhe
+                    $('.alert').remove();
+                    $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
+                }
+            });
+        });
 
         // Navegação entre steps
-        $('.next-step').click(function() {
+        $('.next-step').click(function () {
             var $active = $('.wizard .nav-tabs .active');
             $active.next().removeClass('disabled');
             nextTab($active);
         });
 
-        $('.prev-step').click(function() {
+        $('.prev-step').click(function () {
             var $active = $('.wizard .nav-tabs .active');
             prevTab($active);
         });
@@ -270,7 +280,7 @@
 
         // Preenchimento automático de endereço a partir do CEP usando a API ViaCEP
         function preencherEndereco(cep, enderecoId, bairroId, cidadeId, ufId) {
-            $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function(dados) {
+            $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function (dados) {
                 if (!("erro" in dados)) {
                     $('#' + enderecoId).val(dados.logradouro);
                     $('#' + bairroId).val(dados.bairro);
@@ -283,14 +293,14 @@
         }
 
         // Eventos de input para os campos de CEP
-        $('#cep-origem').on('blur', function() {
+        $('#cep-origem').on('blur', function () {
             var cep = $(this).val().replace(/\D/g, '');
             if (cep !== "") {
                 preencherEndereco(cep, 'endereco-origem', 'bairro-origem', 'cidade-origem', 'uf-origem');
             }
         });
 
-        $('#cep-destino').on('blur', function() {
+        $('#cep-destino').on('blur', function () {
             var cep = $(this).val().replace(/\D/g, '');
             if (cep !== "") {
                 preencherEndereco(cep, 'endereco-destino', 'bairro-destino', 'cidade-destino', 'uf-destino');

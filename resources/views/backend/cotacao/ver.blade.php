@@ -58,6 +58,10 @@
                     <!-- Carga Info -->
                     <table class="table table-borderless table-striped table-vcenter">
                         <tbody>
+                        <tr>
+                                <td class="text-right"><strong>Tipo de Mercadoria</strong></td>
+                                <td>{{ $cotacao->tipo_mercadoria }}</td>
+                            </tr>
                             <tr>
                                 <td class="text-right"><strong>Tipo de Mercadoria</strong></td>
                                 <td>{{ $cotacao->tipo_mercadoria }}</td>
@@ -72,15 +76,15 @@
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Comprimento</strong></td>
-                                <td>{{ $cotacao->comprimento }}</td>
+                                <td>{{ $cotacao->comprimento }} - {{$cotacao->comprimento_unidade_medida}}</td>
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Largura</strong></td>
-                                <td>{{ $cotacao->largura }}</td>
+                                <td>{{ $cotacao->largura }} - {{$cotacao->largura_unidade_medida}}</td>
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Altura</strong></td>
-                                <td>{{ $cotacao->altura }}</td>
+                                <td>{{ $cotacao->altura }} - {{$cotacao->altura_unidade_medida}}</td>
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Peso Total</strong></td>
