@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Valor da Nota Fiscal</strong></td>
-                                <td>{{ $cotacao->valor_nota }}</td>
+                                <td>{{ number_format($cotacao->valor_nota, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="text-right"><strong>Quantidade</strong></td>
@@ -203,6 +203,19 @@
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ $cotacao->email }}" readonly>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="example-select2">Status</label>
+                        <select id="status" name="status" class="select-select2" style="width: 100%;"
+                            data-placeholder="Escolha um Status">
+                            <option></option>
+                            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <option value="recebido">Recebido</option>
+                            <option value="calculando">Calculando</option>
+                            <option value="fechado">Fechado</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="conteudo">Conteúdo</label>
                         <textarea class="form-control ckeditor" id="conteudo" name="conteudo" required></textarea>

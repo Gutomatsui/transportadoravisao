@@ -155,50 +155,24 @@
                     <label for="quantidade">Quantidade</label>
                     <input type="text" class="form-control" name="quantidade">
                 </div>
-                <div class="input-group">
-                    <label for="comprimento">Comprimento</label>
-                    <input type="text" id="comprimento" name="comprimento" class="form-control">
-                    <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="comprimento_unidade_medida"
-                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                            <option value="Centimetros" selected>CM</option>
-                            <option value="Metros">M</option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="Largura">Largura</label>
-                    <input type="text" id="largura" name="largura" class="form-control">
-                    <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="largura_unidade_medida"
-                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                            <option value="Centimetros" selected>CM</option>
-                            <option value="Metros">M</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="comprimento">altura</label>
-                    <input type="text" class="form-control" name="altura" min="0" max="2147483647" required>
-                    <div class="input-group-btn">
-                        <select class="form-control btn btn-primary" name="altura_unidade_medida"
-                            style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                            <option value="Centimetros" selected>CM</option>
-                            <option value="Metros">M</option>
-                        </select>
-                    </div>
-                </div>
 
                 <div class="form-group">
-                    <label for="peso-total">Peso total (kg)</label>
-                    <input type="text" class="form-control" name="peso_total">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="tipo_mercadoria" class="form-control" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="containerizada">Containerizada</option>
+                        <option value="geral">Geral</option>
+                        <option value="frigorifica">Frigorífica</option>
+                        <option value="granel">Granel</option>
+                        <option value="neo_granel">Neo Granel</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="peso-total">Tipo de mercadoria</label>
-                    <input type="text" class="form-control" name="tipo_mercadoria">
-                </div>
+
+                <!-- Campos Dinâmicos -->
+                <div id="dynamicFields"></div>
+
+
                 <div class="form-group">
                     <label for="peso-total">Valor da nota fiscal</label>
                     <input type="text" class="form-control" name="valor_nota" id="valor_nota">
@@ -221,7 +195,7 @@
         $('#cnpj_destinatario').mask('00.000.000/0000-00', { reverse: true });
         $('#cep-origem').mask('00000-000', { reverse: true });
         $('#cep-destino').mask('00000-000', { reverse: true });
-        $('#valor_nota').mask('00.000,00', { reverse: true });
+        $('#valor_nota').mask('000.000.000.000,00', { reverse: true });
         // Captura o envio do formulário
         $('#cotacaoForm').on('submit', function (event) {
             event.preventDefault(); // Previne o envio padrão do formulário
@@ -307,6 +281,127 @@
             }
         });
     });
+
+    const fieldData = {
+        containerizada: [
+            { label: 'Espécie', name: 'especie', type: 'select', options: ['Dry Box', 'High Cube', 'Reefer', 'Isotank', 'Open Top', 'Flat Rack'] },
+            { label: 'Medida', name: 'medida', type: 'custom' },
+            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            { label: 'Dimensões da Carga', name: 'dimensoes', type: 'text' }
+        ],
+        geral: [
+            { label: 'Espécie', name: 'especie', type: 'select', options: ['Paletizada', 'Caixa', 'Fardo', 'Atado', 'Bobina', 'Peça', 'Tambor'] },
+            { label: 'Medida (C x L x H)', name: 'medida', type: 'custom' },
+            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+        ],
+        frigorifica: [
+            { label: 'Temperatura ºC', name: 'temperatura', type: 'number' },
+            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+        ],
+        granel: [
+            { label: 'Toneladas', name: 'toneladas', type: 'number' },
+            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+        ],
+        neo_granel: [
+            { label: 'Toneladas', name: 'toneladas', type: 'number' },
+            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+        ]
+    };
+
+    // Atualiza os campos dinâmicos com base na categoria selecionada
+    // Atualiza os campos dinâmicos com base na categoria selecionada
+$('#categoria').change(function () {
+    const categoria = $(this).val();
+    const fields = fieldData[categoria];
+
+    $('#dynamicFields').empty();
+
+    if (fields) {
+        fields.forEach(field => {
+            let fieldHtml = '';
+            if (field.type === 'select') {
+                fieldHtml = `
+                <div class="form-group">
+                    <label for="${field.name}">${field.label}</label>
+                    <select class="form-control" name="${field.name}" id="${field.name}" required>
+                        ${field.options.map(option => {
+                            const isSelected = option === 'Não' ? 'selected' : '';
+                            return `<option value="${option}" ${isSelected}>${option}</option>`;
+                        }).join('')}
+                    </select>
+                </div>
+            `;
+            } else if (field.type === 'custom') {
+                fieldHtml = `
+                <div class="form-group">
+                    <label>Medidas</label>
+                    <div class="input-group">
+                        <label for="comprimento">Comprimento</label>
+                        <input type="text" id="comprimento" name="comprimento" class="form-control">
+                        <div class="input-group-btn">
+                            <select class="form-control btn btn-primary" name="comprimento_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                                <option value="Centimetros" selected="">CM</option>
+                                <option value="Metros">M</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="Largura">Largura</label>
+                        <input type="text" id="largura" name="largura" class="form-control">
+                        <div class="input-group-btn">
+                            <select class="form-control btn btn-primary" name="largura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                                <option value="Centimetros" selected="">CM</option>
+                                <option value="Metros">M</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="comprimento">Altura</label>
+                        <input type="text" class="form-control" name="altura" min="0" max="2147483647" required="">
+                        <div class="input-group-btn">
+                            <select class="form-control btn btn-primary" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
+                                <option value="Centimetros" selected="">CM</option>
+                                <option value="Metros">M</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            `;
+            } else {
+                fieldHtml = `
+                <div class="form-group">
+                    <label for="${field.name}">${field.label}</label>
+                    <input type="${field.type}" class="form-control" name="${field.name}" id="${field.name}" required>
+                </div>
+            `;
+            }
+            $('#dynamicFields').append(fieldHtml);
+        });
+
+        // Verifica se a carga é perigosa para exibir os campos adicionais
+        $('#perigosa').change(function () {
+            if ($(this).val() === 'Sim') {
+                $('#dynamicFields').append(`
+                <div class="form-group">
+                    <label for="onu">Nº ONU</label>
+                    <input type="text" class="form-control" name="onu" id="onu" required>
+                </div>
+                <div class="form-group">
+                    <label for="risco">Nº RISCO</label>
+                    <input type="text" class="form-control" name="risco" id="risco" required>
+                </div>
+            `);
+            } else {
+                $('#onu, #risco').parent('.form-group').remove();
+            }
+        });
+    }
+});
+
 </script>
 
 @stop

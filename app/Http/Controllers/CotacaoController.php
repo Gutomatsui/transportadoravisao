@@ -33,7 +33,7 @@ class CotacaoController extends Controller
             'comprimento' => 'required|numeric|min:0',
             'largura' => 'required|numeric|min:0',
             'altura' => 'required|numeric|min:0|max:2147483647',
-            'peso_total' => 'required|numeric|min:0',
+            'peso_total' => 'numeric|min:0',
             'cnpj_emitente' => 'nullable|string|max:255',
             'cnpj_destinatario' => 'nullable|string|max:255',
             'tipo_mercadoria' => 'nullable|string|max:255',
@@ -43,6 +43,12 @@ class CotacaoController extends Controller
             'altura_unidade_medida' => 'required|string',
             'largura_unidade_medida' => 'required|string',
             'previsao_transporte' => 'date',
+            'especie' => 'required|string',
+            'medida' => 'nullable|string',
+            'dimensoes' => 'nullable|string',
+            'temperatura' => 'nullable|numeric',
+            'toneladas' => 'nullable|numeric',
+            'm3_total' => 'nullable|numeric',
         ]);
 
         try {
