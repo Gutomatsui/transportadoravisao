@@ -10,6 +10,7 @@ class CotacaoController extends Controller
 {
     public function store(Request $request)
     {
+
         // Validações dos dados
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
@@ -30,25 +31,28 @@ class CotacaoController extends Controller
             'cidade_destino' => 'nullable|string|max:255',
             'uf_destino' => 'nullable|string|max:2',
             'quantidade' => 'required|integer|min:1',
-            'comprimento' => 'required|numeric|min:0',
-            'largura' => 'required|numeric|min:0',
-            'altura' => 'required|numeric|min:0|max:2147483647',
+            'comprimento' => 'numeric|min:0',
+            'largura' => 'numeric|min:0',
+            'altura' => 'numeric|min:0|max:2147483647',
             'peso_total' => 'numeric|min:0',
             'cnpj_emitente' => 'nullable|string|max:255',
             'cnpj_destinatario' => 'nullable|string|max:255',
             'tipo_mercadoria' => 'nullable|string|max:255',
             'resp_mercadoria' => 'nullable|string|max:255',
-            'valor_nota' => 'required|numeric|min:0',
-            'comprimento_unidade_medida' => 'required|string',
-            'altura_unidade_medida' => 'required|string',
-            'largura_unidade_medida' => 'required|string',
+            'valor_nota' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+            'comprimento_unidade_medida' => 'string',
+            'altura_unidade_medida' => 'string',
+            'largura_unidade_medida' => 'string',
             'previsao_transporte' => 'date',
-            'especie' => 'required|string',
+            'especie' => 'nullable|string|max:255',
             'medida' => 'nullable|string',
             'dimensoes' => 'nullable|string',
             'temperatura' => 'nullable|numeric',
             'toneladas' => 'nullable|numeric',
             'm3_total' => 'nullable|numeric',
+            'perigosa' => 'nullable|string|max:255',
+             'onu' => 'nullable|string',
+            'risco' => 'nullable|string'
         ]);
 
         try {

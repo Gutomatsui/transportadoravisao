@@ -195,15 +195,16 @@
         $('#cnpj_destinatario').mask('00.000.000/0000-00', { reverse: true });
         $('#cep-origem').mask('00000-000', { reverse: true });
         $('#cep-destino').mask('00000-000', { reverse: true });
-        $('#valor_nota').mask('000.000.000.000,00', { reverse: true });
+        $('#valor_nota').mask('00.000.000,00', { reverse: true });
         // Captura o envio do formulário
         $('#cotacaoForm').on('submit', function (event) {
             event.preventDefault(); // Previne o envio padrão do formulário
+            console.log($(this).serialize());
 
             // Remover a máscara do campo 'valor_nota' antes de enviar o formulário
             var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
             $('#valor_nota').val(valorNota); // Atualiza o campo sem a máscara
-
+            console.log( $(this).serialize());
             $.ajax({
                 type: 'POST',
                 url: '{{ route('cotacoes.store') }}',
@@ -312,7 +313,6 @@
         ]
     };
 
-    // Atualiza os campos dinâmicos com base na categoria selecionada
     // Atualiza os campos dinâmicos com base na categoria selecionada
 $('#categoria').change(function () {
     const categoria = $(this).val();

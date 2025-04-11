@@ -41,11 +41,15 @@ class Cotacao extends Model
         'altura_unidade_medida',
         'largura_unidade_medida',
         'previsao_transporte',
+        'especie',
         'medida',
         'dimensoes',
         'temperatura',
         'toneladas',
-        'm3_total'
+        'm3_total',
+        'perigosa',
+        'onu',
+        'risco'
     ];
 
     public function emails()
