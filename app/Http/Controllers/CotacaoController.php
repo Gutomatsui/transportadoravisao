@@ -52,7 +52,9 @@ class CotacaoController extends Controller
             'm3_total' => 'nullable|numeric',
             'perigosa' => 'nullable|string|max:255',
              'onu' => 'nullable|string',
-            'risco' => 'nullable|string'
+            'risco' => 'nullable|string',
+            'tipo_container' => 'integer',
+            'peso' => 'string',
         ]);
 
         try {

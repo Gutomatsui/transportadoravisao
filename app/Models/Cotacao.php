@@ -49,7 +49,9 @@ class Cotacao extends Model
         'm3_total',
         'perigosa',
         'onu',
-        'risco'
+        'risco',
+        'tipo_container',
+        'peso'
     ];
 
     public function emails()

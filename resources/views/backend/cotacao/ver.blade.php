@@ -69,54 +69,45 @@
                             </tr>
 
                             <tr>
-                            @if ($cotacao->tipo_mercadoria == 'frigorifica')
-                                <td class="text-right"><strong>Tipo da Mercadoria</strong></td>
-                                <td>{{ $cotacao->tipo_mercadoria }}</td>
+                            <tr>
+    <td class="text-right"><strong>Tipo da Mercadoria</strong></td>
+    <td>{{ $cotacao->tipo_mercadoria }}</td>
+</tr>
 
-                                <tr>
-                                    <td class="text-right"><strong>Temperatura</strong></td>
-                                    <td>{{ $cotacao->temperatura }}</td>
-                                </tr>
-                                    <td class="text-right"><strong>M³ Total da Carga</strong></td>
-                                    <td>{{ $cotacao->m3_total }}</td>
-                                </tr>
-                            @elseif ($cotacao->tipo_mercadoria == 'granel' || $cotacao->tipo_mercadoria == 'neo_granel')
-                                <tr>
-                                    <td class="text-right"><strong>Tipo da Mercadoria</strong></td>
-                                    <td>{{ $cotacao->tipo_mercadoria }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right"><strong>Toneladas</strong></td>
-                                    <td>{{ $cotacao->toneladas }}</td>
-                                </tr>
+<tr>
+    <td class="text-right"><strong>Espécie</strong></td>
+    <td>{{ $cotacao->especie }}</td>
+</tr>
 
-                            @else
-                            <td class="text-right"><strong>Comprimento</strong></td>
-                            <td>{{ $cotacao->comprimento }} - {{ $cotacao->comprimento_unidade_medida }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Tipo da Mercadoria</strong></td>
-                                <td>{{ $cotacao->tipo_mercadoria }}</td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <td class="text-right"><strong>Especie</strong></td>
-                                    <td>{{ $cotacao->especie }}</td>
-                                </tr>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Largura</strong></td>
-                                <td>{{ $cotacao->largura }} - {{ $cotacao->largura_unidade_medida }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Altura</strong></td>
-                                <td>{{ $cotacao->altura }} - {{ $cotacao->altura_unidade_medida }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Peso Total</strong></td>
-                                <td>{{ $cotacao->peso_total }}</td>
-                            </tr>
-                            @endif
+@if ($cotacao->especie === 'Reefer')
+    <tr>
+        <td class="text-right"><strong>Temperatura</strong></td>
+        <td>{{ $cotacao->temperatura }} °c</td>
+    </tr>
+@elseif ($cotacao->especie === 'Open Top')
+    <tr>
+        <td class="text-right"><strong>Altura</strong></td>
+        <td>{{ $cotacao->altura }} - {{ $cotacao->altura_unidade_medida }}</td>
+    </tr>
+@else
+    <tr>
+        <td class="text-right"><strong>Comprimento</strong></td>
+        <td>{{ $cotacao->comprimento }} - {{ $cotacao->comprimento_unidade_medida }}</td>
+    </tr>
+    <tr>
+        <td class="text-right"><strong>Largura</strong></td>
+        <td>{{ $cotacao->largura }} - {{ $cotacao->largura_unidade_medida }}</td>
+    </tr>
+    <tr>
+        <td class="text-right"><strong>Altura</strong></td>
+        <td>{{ $cotacao->altura }} - {{ $cotacao->altura_unidade_medida }}</td>
+    </tr>
+@endif
+
+<tr>
+    <td class="text-right"><strong>Tipo de Container</strong></td>
+    <td>{{ $cotacao->tipo_container }}</td>
+</tr>
 
                             @if ($cotacao->perigosa == 'Sim')
                                 <tr>

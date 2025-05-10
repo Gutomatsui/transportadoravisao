@@ -23,7 +23,7 @@
                 <li class="active"><a href="#step1" data-toggle="tab">Informações pessoais</a></li>
                 <li><a href="#step2" data-toggle="tab">Informações de origem</a></li>
                 <li><a href="#step3" data-toggle="tab">Informações de destino</a></li>
-                <li><a href="#step4" data-toggle="tab">Medidas da mercadoria</a></li>
+                <li><a href="#step4" data-toggle="tab">Informações da carga </a></li>
             </ul>
         </div>
 
@@ -174,7 +174,7 @@
 
 
                 <div class="form-group">
-                    <label for="peso-total">Valor da nota fiscal</label>
+                    <label for="valo-nota">Valor da nota fiscal</label>
                     <input type="text" class="form-control" name="valor_nota" id="valor_nota">
                 </div>
                 <a class="btn btn-default prev-step">Anterior</a>
@@ -204,7 +204,7 @@
             // Remover a máscara do campo 'valor_nota' antes de enviar o formulário
             var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
             $('#valor_nota').val(valorNota); // Atualiza o campo sem a máscara
-            console.log( $(this).serialize());
+            console.log($(this).serialize());
             $.ajax({
                 type: 'POST',
                 url: '{{ route('cotacoes.store') }}',
@@ -288,7 +288,6 @@
             { label: 'Espécie', name: 'especie', type: 'select', options: ['Dry Box', 'High Cube', 'Reefer', 'Isotank', 'Open Top', 'Flat Rack'] },
             { label: 'Medida', name: 'medida', type: 'custom' },
             { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-            { label: 'Dimensões da Carga', name: 'dimensoes', type: 'text' }
         ],
         geral: [
             { label: 'Espécie', name: 'especie', type: 'select', options: ['Paletizada', 'Caixa', 'Fardo', 'Atado', 'Bobina', 'Peça', 'Tambor'] },
@@ -314,7 +313,7 @@
     };
 
     // Atualiza os campos dinâmicos com base na categoria selecionada
-$('#categoria').change(function () {
+    $('#categoria').change(function () {
     const categoria = $(this).val();
     const fields = fieldData[categoria];
 
@@ -322,85 +321,132 @@ $('#categoria').change(function () {
 
     if (fields) {
         fields.forEach(field => {
-            let fieldHtml = '';
-            if (field.type === 'select') {
-                fieldHtml = `
-                <div class="form-group">
-                    <label for="${field.name}">${field.label}</label>
-                    <select class="form-control" name="${field.name}" id="${field.name}" required>
-                        ${field.options.map(option => {
-                            const isSelected = option === 'Não' ? 'selected' : '';
-                            return `<option value="${option}" ${isSelected}>${option}</option>`;
-                        }).join('')}
+    let fieldHtml = '';
+
+    if (field.type === 'select' && field.name === 'perigosa') {
+        // Adiciona o campo peso antes do perigosa
+        $('#dynamicFields').append(`
+            <div class="form-group" id="peso-wrapper">
+                <label for="peso">Peso da Carga (Ton, Kg)</label>
+                <input type="text" class="form-control" name="peso" id="peso">
+            </div>
+        `);
+    }
+
+    if (field.type === 'select') {
+        fieldHtml = `
+            <div class="form-group">
+                <label for="${field.name}">${field.label}</label>
+                <select class="form-control" name="${field.name}" id="${field.name}" required>
+                    ${field.options.map(option => {
+                        const isSelected = option === 'Não' ? 'selected' : '';
+                        return `<option value="${option}" ${isSelected}>${option}</option>`;
+                    }).join('')}
+                </select>
+            </div>
+        `;
+    } else if (field.type === 'custom') {
+        fieldHtml = ''; // aqui mantém como está seu trecho das medidas
+    } else {
+        fieldHtml = `
+            <div class="form-group">
+                <label for="${field.name}">${field.label}</label>
+                <input type="${field.type}" class="form-control" name="${field.name}" id="${field.name}" required>
+            </div>
+        `;
+    }
+
+    $('#dynamicFields').append(fieldHtml);
+});
+
+        // Se containerizada → remove medidas, adiciona tipo do container
+        if (categoria === 'containerizada') {
+            $('#medida-container').remove();
+
+            const tipoContainerField = `
+                <div class="form-group" id="tipo-container-wrapper">
+                    <label for="tipo_container">Tipo do Container</label>
+                    <select class="form-control" name="tipo_container" id="tipo_container" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="40">40</option>
                     </select>
                 </div>
             `;
-            } else if (field.type === 'custom') {
-                fieldHtml = `
-                <div class="form-group">
-                    <label>Medidas</label>
-                    <div class="input-group">
-                        <label for="comprimento">Comprimento</label>
-                        <input type="text" id="comprimento" name="comprimento" class="form-control">
-                        <div class="input-group-btn">
-                            <select class="form-control btn btn-primary" name="comprimento_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                                <option value="Centimetros" selected="">CM</option>
-                                <option value="Metros">M</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="Largura">Largura</label>
-                        <input type="text" id="largura" name="largura" class="form-control">
-                        <div class="input-group-btn">
-                            <select class="form-control btn btn-primary" name="largura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                                <option value="Centimetros" selected="">CM</option>
-                                <option value="Metros">M</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="comprimento">Altura</label>
-                        <input type="text" class="form-control" name="altura" min="0" max="2147483647" required="">
-                        <div class="input-group-btn">
-                            <select class="form-control btn btn-primary" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 21%">
-                                <option value="Centimetros" selected="">CM</option>
-                                <option value="Metros">M</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            `;
-            } else {
-                fieldHtml = `
-                <div class="form-group">
-                    <label for="${field.name}">${field.label}</label>
-                    <input type="${field.type}" class="form-control" name="${field.name}" id="${field.name}" required>
-                </div>
-            `;
-            }
-            $('#dynamicFields').append(fieldHtml);
-        });
+            $('#especie').closest('.form-group').after(tipoContainerField);
 
-        // Verifica se a carga é perigosa para exibir os campos adicionais
+            // Regra por espécie
+            $('#especie').on('change', function () {
+                const especie = $(this).val();
+
+                // Limpa qualquer coisa anterior
+                $('#medida-altura-only').remove();
+                $('#temperatura-wrapper').remove();
+                $('#medida-container').remove();
+
+                if (especie === 'Reefer') {
+                    $('#tipo-container-wrapper').after(`
+                        <div class="form-group" id="temperatura-wrapper">
+                            <label for="temperatura">Temperatura (ºC)</label>
+                            <input type="number" class="form-control" name="temperatura" id="temperatura" required>
+                        </div>
+                    `);
+                    return; // para aqui porque Reefer ignora medidas
+                }
+
+                if (especie === 'Open Top') {
+                    const alturaOnly = `
+                        <div class="form-group" id="medida-altura-only">
+                            <label for="altura">Altura</label>
+                            <div class="input-group">
+                                <input type="text" id="altura" name="altura" class="form-control">
+                                <div class="input-group-btn">
+                                    <select class="form-control btn btn-primary unidade-medida" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 0">
+                                        <option value="centimetros" selected>CM</option>
+                                        <option value="metros">M</option>
+                                        <option value="milimetros">MM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    $('#tipo-container-wrapper').after(alturaOnly);
+                }
+            });
+
+            setTimeout(() => {
+                $('#especie').trigger('change');
+            }, 50);
+        }
+
+        // Campo perigosa: adiciona campos ONU e RISCO se necessário
         $('#perigosa').change(function () {
             if ($(this).val() === 'Sim') {
                 $('#dynamicFields').append(`
-                <div class="form-group">
-                    <label for="onu">Nº ONU</label>
-                    <input type="text" class="form-control" name="onu" id="onu" required>
-                </div>
-                <div class="form-group">
-                    <label for="risco">Nº RISCO</label>
-                    <input type="text" class="form-control" name="risco" id="risco" required>
-                </div>
-            `);
+                    <div class="form-group" id="onu-group">
+                        <label for="onu">Nº ONU</label>
+                        <input type="text" class="form-control" name="onu" id="onu" required>
+                    </div>
+                    <div class="form-group" id="risco-group">
+                        <label for="risco">Nº RISCO</label>
+                        <input type="text" class="form-control" name="risco" id="risco" required>
+                    </div>
+                `);
             } else {
-                $('#onu, #risco').parent('.form-group').remove();
+                $('#onu-group, #risco-group').remove();
             }
+        });
+
+        // Sincroniza unidades
+        $(document).on('change', '.unidade-medida', function () {
+            const selected = $(this).val();
+            $('.unidade-medida').val(selected);
         });
     }
 });
+
+
 
 </script>
 
