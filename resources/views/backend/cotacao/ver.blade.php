@@ -121,6 +121,17 @@
                                 </tr>
                             @endif
 
+                        @if ($cotacao->arquivo_anexo)
+    <tr>
+        <td class="text-right"><strong>Arquivo Anexo</strong></td>
+        <td>
+            <a href="{{ route('cotacoes.download', $cotacao->id) }}" class="btn btn-sm btn-success">
+                📥 Baixar Arquivo
+            </a>
+        </td>
+    </tr>
+@endif
+
                         </tbody>
                     </table>
                 </div>

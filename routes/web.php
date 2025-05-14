@@ -36,6 +36,8 @@ Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.em
 Route::get('cotacao/emails/{id}', [EmailController::class, 'verEmails'])->name('cotacao.emails');
 Route::post('orcamento/buscar', [CotacaoController::class, 'buscar'])->name('orcamento.buscar');
 
+Route::get('/download-arquivo/{cotacao}', [CotacaoController::class, 'baixarArquivo'])->name('cotacoes.download');
+
 
 
 Auth::routes();

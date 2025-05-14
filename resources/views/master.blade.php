@@ -5,6 +5,7 @@
 <meta name="googlebot" content="index, follow, all">
 <meta name="google" content="notranslate">
 <meta name="author" content="matsuitecnologia.com.br">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ $title ?? 'Transportadora visao' }}</title> <!-- Título dinâmico -->
 
 <link href="{{ URL::to('public/css/bootstrap/bootstrap.css') }}" rel="stylesheet">

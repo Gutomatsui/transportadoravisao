@@ -51,7 +51,8 @@ class Cotacao extends Model
         'onu',
         'risco',
         'tipo_container',
-        'peso'
+        'peso',
+        'arquivo_anexo'
     ];
 
     public function emails()
