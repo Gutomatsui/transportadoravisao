@@ -196,43 +196,35 @@
         $('#cep-origem').mask('00000-000', { reverse: true });
         $('#cep-destino').mask('00000-000', { reverse: true });
         $('#valor_nota').mask('00.000.000,00', { reverse: true });
-        // Captura o envio do formulário
+
         $('#cotacaoForm').on('submit', function (event) {
-    event.preventDefault();
+            event.preventDefault();
+            var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
+            $('#valor_nota').val(valorNota);
+            var formData = new FormData(this);
 
-    // Remove máscara antes de enviar
-    var valorNota = $('#valor_nota').val().replace(/\./g, '').replace(',', '.');
-    $('#valor_nota').val(valorNota);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cotacoes.store') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $('.alert').remove();
+                    if (response.success) {
+                        $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
+                        setTimeout(() => location.reload(), 5000);
+                    } else if (response.error) {
+                        $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
+                    }
+                },
+                error: function () {
+                    $('.alert').remove();
+                    $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
+                }
+            });
+        });
 
-    var formData = new FormData(this);
-
-    $.ajax({
-        type: 'POST',
-        url: '{{ route('cotacoes.store') }}',
-        data: formData,
-        processData: false, // Importante para enviar arquivo
-        contentType: false, // Importante para enviar arquivo
-        success: function (response) {
-            if (response.success) {
-                $('.alert').remove();
-                $('<div class="alert alert-success">' + response.success + '</div>').insertBefore('form');
-                setTimeout(function () {
-                    location.reload();
-                }, 5000);
-            } else if (response.error) {
-                $('.alert').remove();
-                $('<div class="alert alert-danger">' + response.error + '</div>').insertBefore('form');
-            }
-        },
-        error: function () {
-            $('.alert').remove();
-            $('<div class="alert alert-danger">Erro ao enviar a cotação. Por favor, tente novamente.</div>').insertBefore('form');
-        }
-    });
-});
-
-
-        // Navegação entre steps
         $('.next-step').click(function () {
             var $active = $('.wizard .nav-tabs .active');
             $active.next().removeClass('disabled');
@@ -252,10 +244,9 @@
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
 
-        // Preenchimento automático de endereço a partir do CEP usando a API ViaCEP
         function preencherEndereco(cep, enderecoId, bairroId, cidadeId, ufId) {
             $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function (dados) {
-                if (!("erro" in dados)) {
+                if (!dados.erro) {
                     $('#' + enderecoId).val(dados.logradouro);
                     $('#' + bairroId).val(dados.bairro);
                     $('#' + cidadeId).val(dados.localidade);
@@ -266,218 +257,217 @@
             });
         }
 
-        // Eventos de input para os campos de CEP
         $('#cep-origem').on('blur', function () {
             var cep = $(this).val().replace(/\D/g, '');
-            if (cep !== "") {
-                preencherEndereco(cep, 'endereco-origem', 'bairro-origem', 'cidade-origem', 'uf-origem');
-            }
+            if (cep) preencherEndereco(cep, 'endereco-origem', 'bairro-origem', 'cidade-origem', 'uf-origem');
         });
 
         $('#cep-destino').on('blur', function () {
             var cep = $(this).val().replace(/\D/g, '');
-            if (cep !== "") {
-                preencherEndereco(cep, 'endereco-destino', 'bairro-destino', 'cidade-destino', 'uf-destino');
-            }
+            if (cep) preencherEndereco(cep, 'endereco-destino', 'bairro-destino', 'cidade-destino', 'uf-destino');
         });
-    });
 
-    const fieldData = {
-        containerizada: [
-            { label: 'Espécie', name: 'especie', type: 'select', options: ['Dry Box', 'High Cube', 'Reefer', 'Isotank', 'Open Top', 'Flat Rack'] },
-            { label: 'Medida', name: 'medida', type: 'custom' },
-            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-        ],
-        geral: [
-        {
-            label: 'Espécie', name: 'especie', type: 'select', options: [
-                'Paletizada',
-                'Caixa',
-                'Fardo',
-                'Atado',
-                'Bobina',
-                'Peça',
-                'Tambor',
-                'Cargas Projeto'
+        const fieldData = {
+            containerizada: [
+                { label: 'Espécie', name: 'especie', type: 'select', options: ['Dry Box', 'High Cube', 'Reefer', 'Isotank', 'Open Top', 'Flat Rack'] },
+                { label: 'Medida', name: 'medida', type: 'custom' },
+                { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+            ],
+            geral: [
+                { label: 'Espécie', name: 'especie', type: 'select', options: ['Paletizada', 'Caixa', 'Fardo', 'Atado', 'Bobina', 'Peça', 'Tambor', 'Cargas Projeto'] },
+                { label: 'Medida (C x L x H)', name: 'medida', type: 'custom' },
+                { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+                { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+            ],
+            frigorifica: [
+                { label: 'Temperatura ºC', name: 'temperatura', type: 'number' },
+                { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+                { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+            ],
+            granel: [
+                { label: 'Toneladas', name: 'toneladas', type: 'number' },
+                { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+                { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
+            ],
+            neo_granel: [
+                { label: 'Toneladas', name: 'toneladas', type: 'number' },
+                { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
+                { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
             ]
-        },
-        { label: 'Medida (C x L x H)', name: 'medida', type: 'custom' },
-        { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-        { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
-    ],
-        frigorifica: [
-            { label: 'Temperatura ºC', name: 'temperatura', type: 'number' },
-            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
-        ],
-        granel: [
-            { label: 'Toneladas', name: 'toneladas', type: 'number' },
-            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
-        ],
-        neo_granel: [
-            { label: 'Toneladas', name: 'toneladas', type: 'number' },
-            { label: 'Perigosa', name: 'perigosa', type: 'select', options: ['Sim', 'Não'] },
-            { label: 'M³ Total da Carga', name: 'm3_total', type: 'number' }
-        ]
-    };
+        };
 
-    // Atualiza os campos dinâmicos com base na categoria selecionada
-    $('#categoria').change(function () {
-    const categoria = $(this).val();
-    const fields = fieldData[categoria];
+        $('#categoria').change(function () {
+            const categoria = $(this).val();
+            const fields = fieldData[categoria];
+            $('#dynamicFields').empty();
 
-    $('#dynamicFields').empty();
+            if (fields) {
+                fields.forEach(field => {
+                    let fieldHtml = '';
 
-    if (fields) {
-        fields.forEach(field => {
-            let fieldHtml = '';
+                    if (field.type === 'select' && field.name === 'perigosa') {
+                        $('#dynamicFields').append(`
+                        <div class="form-group" id="peso-wrapper">
+                            <label for="peso">Peso da Carga (Ton, Kg)</label>
+                            <input type="text" class="form-control" name="peso" id="peso">
+                        </div>
+                    `);
+                    }
 
-            if (field.type === 'select' && field.name === 'perigosa') {
-                // Adiciona o campo peso antes do perigosa
-                $('#dynamicFields').append(`
-                    <div class="form-group" id="peso-wrapper">
-                        <label for="peso">Peso da Carga (Ton, Kg)</label>
-                        <input type="text" class="form-control" name="peso" id="peso">
+                    if (field.type === 'select') {
+                        fieldHtml = `
+                        <div class="form-group">
+                            <label for="${field.name}">${field.label}</label>
+                            <select class="form-control" name="${field.name}" id="${field.name}" required>
+                                ${field.options.map(option => {
+                            const isSelected = option === 'Não' ? 'selected' : '';
+                            return `<option value="${option}" ${isSelected}>${option}</option>`;
+                        }).join('')}
+                            </select>
+                        </div>
+                    `;
+                    } else if (field.type === 'custom') {
+                        fieldHtml = ''; // Medidas são tratadas depois
+                    } else {
+                        fieldHtml = `
+                        <div class="form-group">
+                            <label for="${field.name}">${field.label}</label>
+                            <input type="${field.type}" class="form-control" name="${field.name}" id="${field.name}" required>
+                        </div>
+                    `;
+                    }
+
+                    $('#dynamicFields').append(fieldHtml);
+                });
+
+                // Upload para Cargas Projeto
+                if (categoria === 'geral') {
+                    $('#dynamicFields').append(`
+                    <div class="form-group" id="upload-wrapper" style="display: none;">
+                        <label for="arquivo_anexo">Anexar arquivo (PDF ou CSV, máx. 2MB)</label>
+                        <input type="file" class="form-control" name="arquivo_anexo" id="arquivo_anexo" accept=".pdf,.csv">
+                        <small class="text-muted">Somente PDF ou CSV. Máximo de 2MB. Apenas um arquivo.</small>
                     </div>
                 `);
-            }
+                    setTimeout(() => {
+                        $('#especie').on('change', function () {
+                            $('#upload-wrapper').toggle($(this).val() === 'Cargas Projeto');
+                        }).trigger('change');
+                    }, 100);
+                }
 
-            if (field.type === 'select') {
-                fieldHtml = `
-                    <div class="form-group">
-                        <label for="${field.name}">${field.label}</label>
-                        <select class="form-control" name="${field.name}" id="${field.name}" required>
-                            ${field.options.map(option => {
-                                const isSelected = option === 'Não' ? 'selected' : '';
-                                return `<option value="${option}" ${isSelected}>${option}</option>`;
-                            }).join('')}
+                // Campos específicos para containerizada
+                if (categoria === 'containerizada') {
+                    $('#especie').closest('.form-group').after(`
+                    <div class="form-group" id="tipo-container-wrapper">
+                        <label for="tipo_container">Tipo do Container</label>
+                        <select class="form-control" name="tipo_container" id="tipo_container" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="40">40</option>
                         </select>
                     </div>
-                `;
-            } else if (field.type === 'custom') {
-                fieldHtml = ''; // você pode colocar seus campos personalizados aqui
-            } else {
-                fieldHtml = `
-                    <div class="form-group">
-                        <label for="${field.name}">${field.label}</label>
-                        <input type="${field.type}" class="form-control" name="${field.name}" id="${field.name}" required>
-                    </div>
-                `;
-            }
+                `);
 
-            $('#dynamicFields').append(fieldHtml);
-        });
+                    $('#especie').on('change', function () {
+                        const especie = $(this).val();
+                        $('#medida-altura-only, #temperatura-wrapper, #medida-container, #peso-wrapper').remove();
 
-        // ⬇️ Upload Condicional (categoria = geral, espécie = Cargas Projeto)
-        if (categoria === 'geral') {
-            $('#dynamicFields').append(`
-                <div class="form-group" id="upload-wrapper" style="display: none;">
-                    <label for="arquivo_anexo">Anexar arquivo (PDF ou CSV, máx. 2MB)</label>
-                    <input type="file" class="form-control" name="arquivo_anexo" id="arquivo_anexo" accept=".pdf,.csv">
-                    <small class="text-muted">Somente PDF ou CSV. Máximo de 2MB. Apenas um arquivo.</small>
-                </div>
-            `);
+                        if (especie === 'Reefer') {
+                            $('#tipo-container-wrapper').after(`
+                            <div class="form-group" id="temperatura-wrapper">
+                                <label for="temperatura">Temperatura (ºC)</label>
+                                <input type="number" class="form-control" name="temperatura" id="temperatura" required>
+                            </div>
+                        `);
+                        }
 
-            setTimeout(() => {
-                $('#especie').on('change', function () {
-                    if ($(this).val() === 'Cargas Projeto') {
-                        $('#upload-wrapper').show();
+                        if (especie === 'Open Top') {
+                            $('#tipo-container-wrapper').after(`
+                            <div class="form-group" id="medida-altura-only">
+                                <label for="altura">Altura</label>
+                                <div class="input-group">
+                                    <input type="text" id="altura" name="altura" class="form-control">
+                                    <div class="input-group-btn">
+                                        <select class="form-control btn btn-primary unidade-medida" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 0">
+                                            <option value="centimetros" selected>CM</option>
+                                            <option value="metros">M</option>
+                                            <option value="milimetros">MM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                        }
+
+                        if (especie === 'Flat Rack') {
+                            $('#tipo-container-wrapper').after(`
+                            <div class="form-group" id="medida-container">
+                                <label for="largura">Largura</label>
+                                <div class="input-group" style="margin-bottom: 10px;">
+                                    <input type="text" id="largura" name="largura" class="form-control">
+                                    <div class="input-group-btn">
+                                        <select class="form-control btn btn-primary unidade-medida" name="largura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 0">
+                                            <option value="centimetros" selected>CM</option>
+                                            <option value="metros">M</option>
+                                            <option value="milimetros">MM</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <label for="altura">Altura</label>
+                                <div class="input-group">
+                                    <input type="text" id="altura" name="altura" class="form-control">
+                                    <div class="input-group-btn">
+                                        <select class="form-control btn btn-primary unidade-medida" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 0">
+                                            <option value="centimetros" selected>CM</option>
+                                            <option value="metros">M</option>
+                                            <option value="milimetros">MM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                        }else {
+                            // Restaura peso se não for Flat Rack
+                            $('#tipo-container-wrapper').after(`
+                            <div class="form-group" id="peso-wrapper">
+                                <label for="peso">Peso da Carga (Ton, Kg)</label>
+                                <input type="text" class="form-control" name="peso" id="peso">
+                            </div>
+                        `);
+                        }
+                    });
+
+                    setTimeout(() => $('#especie').trigger('change'), 50);
+                }
+
+                $('#perigosa').change(function () {
+                    if ($(this).val() === 'Sim') {
+                        $('#dynamicFields').append(`
+                        <div class="form-group" id="onu-group">
+                            <label for="onu">Nº ONU</label>
+                            <input type="text" class="form-control" name="onu" id="onu" required>
+                        </div>
+                        <div class="form-group" id="risco-group">
+                            <label for="risco">Nº RISCO</label>
+                            <input type="text" class="form-control" name="risco" id="risco" required>
+                        </div>
+                    `);
                     } else {
-                        $('#upload-wrapper').hide();
+                        $('#onu-group, #risco-group').remove();
                     }
                 });
 
-                if ($('#especie').val() === 'Cargas Projeto') {
-                    $('#upload-wrapper').show();
-                }
-            }, 100);
-        }
-
-        // Containerizada → Tipo do container
-        if (categoria === 'containerizada') {
-            const tipoContainerField = `
-                <div class="form-group" id="tipo-container-wrapper">
-                    <label for="tipo_container">Tipo do Container</label>
-                    <select class="form-control" name="tipo_container" id="tipo_container" required>
-                        <option value="" disabled selected>Selecione</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="40">40</option>
-                    </select>
-                </div>
-            `;
-            $('#especie').closest('.form-group').after(tipoContainerField);
-
-            $('#especie').on('change', function () {
-                const especie = $(this).val();
-
-                $('#medida-altura-only').remove();
-                $('#temperatura-wrapper').remove();
-                $('#medida-container').remove();
-
-                if (especie === 'Reefer') {
-                    $('#tipo-container-wrapper').after(`
-                        <div class="form-group" id="temperatura-wrapper">
-                            <label for="temperatura">Temperatura (ºC)</label>
-                            <input type="number" class="form-control" name="temperatura" id="temperatura" required>
-                        </div>
-                    `);
-                    return;
-                }
-
-                if (especie === 'Open Top') {
-                    $('#tipo-container-wrapper').after(`
-                        <div class="form-group" id="medida-altura-only">
-                            <label for="altura">Altura</label>
-                            <div class="input-group">
-                                <input type="text" id="altura" name="altura" class="form-control">
-                                <div class="input-group-btn">
-                                    <select class="form-control btn btn-primary unidade-medida" name="altura_unidade_medida" style="width: 117px; height: 35px; font-size: 14px; margin-top: 0">
-                                        <option value="centimetros" selected>CM</option>
-                                        <option value="metros">M</option>
-                                        <option value="milimetros">MM</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    `);
-                }
-            });
-
-            setTimeout(() => {
-                $('#especie').trigger('change');
-            }, 50);
-        }
-
-        // Perigosa → Campos adicionais
-        $('#perigosa').change(function () {
-            if ($(this).val() === 'Sim') {
-                $('#dynamicFields').append(`
-                    <div class="form-group" id="onu-group">
-                        <label for="onu">Nº ONU</label>
-                        <input type="text" class="form-control" name="onu" id="onu" required>
-                    </div>
-                    <div class="form-group" id="risco-group">
-                        <label for="risco">Nº RISCO</label>
-                        <input type="text" class="form-control" name="risco" id="risco" required>
-                    </div>
-                `);
-            } else {
-                $('#onu-group, #risco-group').remove();
+                $(document).on('change', '.unidade-medida', function () {
+                    const selected = $(this).val();
+                    $('.unidade-medida').val(selected);
+                });
             }
         });
-
-        // Sincroniza unidades
-        $(document).on('change', '.unidade-medida', function () {
-            const selected = $(this).val();
-            $('.unidade-medida').val(selected);
-        });
-    }
-});
-
-
+    });
 </script>
 
-@stop
 
+@stop

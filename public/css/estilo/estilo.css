@@ -4,6 +4,9 @@
 
 /* GERAL */
 body { font-family: 'Open Sans', sans-serif; }
+.main {
+  min-height: 100%;
+}
 a:hover { text-decoration: none; }
 .titulo { text-transform: uppercase;color: #007ecb; margin-bottom: 15px; }
 	.titulo h1,
@@ -436,4 +439,59 @@ table .graficos-sassmaq{
     .input-group textarea {
         font-size: 14px;
     }
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(37, 211, 102, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  animation: pulse 2s infinite;
+  transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+
+/* Ajuste para o botão flutuante não colar no rodapé */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 80px; /* Aumenta espaço embaixo para não colar no rodapé */
+    right: 15px;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .desenvolvimento {
+    padding-bottom: 50px; /* Dá mais respiro no rodapé para evitar sobreposição */
+  }
+}
+
+.whatsapp-float {
+  z-index: 99999;
 }

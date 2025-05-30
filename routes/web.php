@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[siteController::class,'index']);
+Route::get('',[siteController::class,'index']);
 Route::get('/a-empresa',[siteController::class,'sobre']);
 Route::get('/sassmaq',[siteController::class,'sassmaq']);
 Route::get('/servicos',[siteController::class,'servicos']);
