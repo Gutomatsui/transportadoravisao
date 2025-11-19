@@ -1,20 +1,20 @@
 @extends('backend.master')
 @section('backend.content')
 
-    <!-- Customer Content -->
-    <!-- Page content -->
-    <div id="page-content">
+<!-- Customer Content -->
+<!-- Page content -->
+<div id="page-content">
 
-        <div class="row">
-            <!-- Coluna de Informações do Cliente -->
-            <div class="col-lg-4">
-                <!-- Customer Info Block -->
-                <div class="block">
-                    <!-- Customer Info Title -->
-                    <div class="block-title">
-                        <h2><i class="fa fa-file-o"></i> <strong>Informações</strong> do Cliente</h2>
-                    </div>
-                    <!-- END Customer Info Title -->
+    <div class="row">
+        <!-- Coluna de Informações do Cliente -->
+        <div class="col-lg-4">
+            <!-- Customer Info Block -->
+            <div class="block">
+                <!-- Customer Info Title -->
+                <div class="block-title">
+                    <h2><i class="fa fa-file-o"></i> <strong>Informações</strong> do Cliente</h2>
+                </div>
+                <!-- END Customer Info Title -->
 
                     <!-- Customer Info -->
                     <div class="block-section text-center">
@@ -29,33 +29,42 @@
                     <table class="table table-borderless table-striped table-vcenter">
                         <tbody>
                             <tr>
-                                <td class="text-right"><strong>Responsável do Frete</strong></td>
-                                <td>{{ $cotacao->resp_mercadoria }}</td>
+                                <td class="text-right"><strong>Cep</strong></td>
+                                <td>{{ $cotacao->cep_origem }}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><strong>Email</strong></td>
-                                <td>{{ $cotacao->email }}</td>
+                                <td class="text-right"><strong>Endereço</strong></td>
+                                <td>{{ $cotacao->endereco_origem }}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><strong>Telefone</strong></td>
-                                <td>{{ $cotacao->telefone }}</td>
+                                <td class="text-right"><strong>Número</strong></td>
+                                <td>{{ $cotacao->numero_origem }}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><strong>CNPJ do Emitente</strong></td>
-                                <td>{{ $cotacao->cnpj_emitente }}</td>
+                                <td class="text-right"><strong>Complemento</strong></td>
+                                <td>{{ $cotacao->complemento_origem }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Cidade</strong></td>
+                                <td>{{ $cotacao->cidade_origem }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>UF</strong></td>
+                                <td>{{ $cotacao->uf_origem }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
 
-                <!-- Informações da Carga abaixo da Informações do Cliente -->
-                <div class="block">
-                    <!-- Carga Info Title -->
-                    <div class="block-title">
-                        <h2><i class="fa fa-cube"></i> <strong>Informações</strong> da Carga</h2>
-                    </div>
-
-                    <!-- Carga Info -->
+        <!-- Informações de Destino -->
+        <div class="col-lg-8">
+            <div class="block">
+                <div class="block-title">
+                    <h2><i class="fa fa-truck"></i> <strong>Informações de Destino</strong></h2>
+                </div>
+                <div class="block-section">
                     <table class="table table-borderless table-striped table-vcenter">
                         <tbody>
                             <tr>
@@ -64,8 +73,8 @@
                             </tr>
 
                             <tr>
-                                <td class="text-right"><strong>Quantidade</strong></td>
-                                <td>{{ $cotacao->quantidade }}</td>
+                                <td class="text-right"><strong>Número</strong></td>
+                                <td>{{ $cotacao->numero_destino }}</td>
                             </tr>
 
                             <tr>
@@ -134,8 +143,6 @@
 
                         </tbody>
                     </table>
-                </div>
-            </div>
 
             <!-- Informações de Origem -->
             <div class="col-lg-8">
@@ -226,6 +233,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
     <!-- Modal para enviar o email -->
@@ -277,10 +285,10 @@
     </div>
 
 
-    <!-- Inclua o CKEditor -->
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('conteudo');
-    </script>
+<!-- Inclua o CKEditor -->
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('conteudo');
+</script>
 
 @stop
