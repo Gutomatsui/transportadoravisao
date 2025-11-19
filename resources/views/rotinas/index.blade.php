@@ -58,7 +58,7 @@
                                                         <div class="servicos-item-imagem"
                                                             style="height: 200px; overflow: hidden;">
                                                             @if($rotina->img)
-                                                                <img src="{{ asset('public' . $rotina->img) }}"
+                                                                <img src="{{ asset('public/' . $rotina->img) }}"
                                                                     class="img-responsive center-block" alt="{{ $rotina->title }}"
                                                                     style="width: 100%; height: 100%; object-fit: cover;">
                                                             @else

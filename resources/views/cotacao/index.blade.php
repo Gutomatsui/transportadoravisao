@@ -83,11 +83,6 @@
                     <label for="previsao_transprte">Previsão do transporte</label>
                     <input type="date" class="form-control" name="previsao_transporte" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="previsao_transprte">Previsão do transporte</label>
-                    <input type="date" class="form-control" name="previsao_transporte" required>
-                </div>
                 <a class="btn btn-primary next-step">Próximo</a>
             </div>
 
@@ -198,7 +193,6 @@
         </div>
     </form>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
