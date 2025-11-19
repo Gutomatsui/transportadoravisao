@@ -5,12 +5,7 @@
 
     <!-- Dashboard 2 Header -->
     <div class="content-header">
-        <ul class="nav-horizontal text-center">
-            <li>
-                <a id="verCotacoes" href="{{URL::to('cotacao/listar')}}"><i class="fa fa-truck" style="color: #000" ></i> Cotação</a>
-                <span id="contadorCotacoes" style="display:none; background-color: red; color: white; padding: 3px 7px; border-radius: 50%; font-size: 12px;">0</span>
-            </li>             
-        </ul>
+    
     </div>
     <!-- END Dashboard 2 Header -->
 

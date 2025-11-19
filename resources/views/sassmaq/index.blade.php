@@ -162,39 +162,39 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-01.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-01.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-02.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-02.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-03.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-03.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-04.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-04.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-06.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-06.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-07.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-07.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-08.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-08.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-09.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-09.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <img class="img-responsive full-image-grafico" src="img/graficos/grafico-05.png">
+                    <img class="img-responsive full-image-grafico" src="{{URL::to('public/img/graficos/grafico-05.png')}}">
                     <hr>
                 </div>
                 <div class="col-md-6 col-xs-12 sasmaq-declaracao-final">

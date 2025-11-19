@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cotacao;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 class CotacaoController extends Controller
 {
     public function store(Request $request)
     {
-        // Validações dos dados
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -30,32 +30,59 @@ class CotacaoController extends Controller
             'cidade_destino' => 'nullable|string|max:255',
             'uf_destino' => 'nullable|string|max:2',
             'quantidade' => 'required|integer|min:1',
-            'comprimento' => 'required|numeric|min:0',
-            'largura' => 'required|numeric|min:0',
-            'altura' => 'required|numeric|min:0|max:2147483647',
-            'peso_total' => 'required|numeric|min:0',
+            'comprimento' => 'numeric|min:0',
+            'largura' => 'numeric|min:0',
+            'altura' => 'numeric|min:0|max:2147483647',
+            'peso_total' => 'numeric|min:0',
             'cnpj_emitente' => 'nullable|string|max:255',
             'cnpj_destinatario' => 'nullable|string|max:255',
             'tipo_mercadoria' => 'nullable|string|max:255',
             'resp_mercadoria' => 'nullable|string|max:255',
-            'valor_nota' => 'required|numeric|min:0',
-            'comprimento_unidade_medida' => 'required|string',
-            'altura_unidade_medida' => 'required|string',
-            'largura_unidade_medida' => 'required|string',
+            'valor_nota' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+            'comprimento_unidade_medida' => 'string',
+            'altura_unidade_medida' => 'string',
+            'largura_unidade_medida' => 'string',
             'previsao_transporte' => 'date',
+            'especie' => 'nullable|string|max:255',
+            'medida' => 'nullable|string',
+            'dimensoes' => 'nullable|string',
+            'temperatura' => 'nullable|numeric',
+            'toneladas' => 'nullable|numeric',
+            'm3_total' => 'nullable|numeric',
+            'perigosa' => 'nullable|string|max:255',
+            'onu' => 'nullable|string',
+            'risco' => 'nullable|string',
+            'tipo_container' => 'integer',
+            'peso' => 'string',
+            'arquivo_anexo' => 'nullable|file|mimes:pdf,csv|max:2048',
         ]);
 
         try {
-            // Criação da cotação
+            // Upload condicional: apenas para Geral + Cargas Projeto
+            if (
+                $request->tipo_mercadoria === 'geral' &&
+                $request->especie === 'Cargas Projeto' &&
+                $request->hasFile('arquivo_anexo')
+            ) {
+                $arquivo = $request->file('arquivo_anexo');
+                $nomeArquivo = time() . '_' . $arquivo->getClientOriginalName();
+
+                // Diretório de destino: public/backend/arquivos
+                $destino = public_path('backend/arquivos');
+                $arquivo->move($destino, $nomeArquivo);
+
+                // Caminho salvo no banco
+                $validated['arquivo_anexo'] = 'backend/arquivos/' . $nomeArquivo;
+            }
+
             Cotacao::create($validated);
 
-            // Retorno de resposta JSON de sucesso
             return response()->json(['success' => 'Cotação salva com sucesso!']);
         } catch (\Exception $e) {
-            // Retorno de resposta JSON de erro
             return response()->json(['error' => 'Erro ao salvar cotação: ' . $e->getMessage()], 500);
         }
     }
+
 
     public function listar()
     {
@@ -98,26 +125,38 @@ class CotacaoController extends Controller
 
 
     public function buscar(Request $request)
+    {
+        // Valida o campo de busca
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+        ]);
+
+        // Captura o termo de busca
+        $termo = $request->input('name');
+
+        // Busca as cotações pelo termo (Cliente, Status, etc.)
+        $cotacao = Cotacao::where('nome', 'LIKE', "%{$termo}%")
+            ->orWhere('email', 'LIKE', "%{$termo}%")
+            ->orWhere('telefone', 'LIKE', "%{$termo}%")
+            ->orWhere('endereco_origem', 'LIKE', "%{$termo}%")
+            ->orWhere('endereco_destino', 'LIKE', "%{$termo}%")
+            ->orWhere('cnpj_emitente', 'LIKE', "%{$termo}%")
+            ->paginate(10);
+
+        // Retorna a view com os resultados
+        return view('backend.cotacao.listar', compact('cotacao'));
+    }
+
+    public function baixarArquivo(Cotacao $cotacao)
 {
-    // Valida o campo de busca
-    $request->validate([
-        'name' => 'nullable|string|max:255',
-    ]);
+    $caminho = public_path($cotacao->arquivo_anexo);
 
-    // Captura o termo de busca
-    $termo = $request->input('name');
+    if (!File::exists($caminho)) {
+        abort(404, 'Arquivo não encontrado.');
+    }
 
-    // Busca as cotações pelo termo (Cliente, Status, etc.)
-    $cotacao = Cotacao::where('nome', 'LIKE', "%{$termo}%")
-                ->orWhere('email', 'LIKE', "%{$termo}%")
-                ->orWhere('telefone', 'LIKE', "%{$termo}%")
-                ->orWhere('endereco_origem', 'LIKE', "%{$termo}%")
-                ->orWhere('endereco_destino', 'LIKE', "%{$termo}%")
-                ->orWhere('cnpj_emitente', 'LIKE', "%{$termo}%")
-                ->paginate(10);
-
-    // Retorna a view com os resultados
-    return view('backend.cotacao.listar', compact('cotacao'));
+    $nomeOriginal = basename($cotacao->arquivo_anexo);
+    return Response::download($caminho, $nomeOriginal);
 }
 
 

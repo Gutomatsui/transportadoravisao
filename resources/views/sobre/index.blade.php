@@ -78,7 +78,7 @@
                                         <a href="">
                                             <div class="servicos-item-azul"></div>
                                             <div class="servicos-item-imagem">
-                                                <img src="/img/certificados/exercito-empresa-aprovada-transporte-rodoviario.jpg"
+                                                <img src="{{URL::to('public/img/certificados/exercito-empresa-aprovada-transporte-rodoviario.jpg')}}"
                                                     class="center-block">
                                             </div>
                                         </a>
@@ -92,7 +92,7 @@
                                         <a href="">
                                             <div class="servicos-item-azul"></div>
                                             <div class="servicos-item-imagem">
-                                                <img src="/img/certificados/policia-federal-empresa-aprovada-transporte-rodoviario.jpg"
+                                                <img src="{{URL::to('public/img/certificados/policia-federal-empresa-aprovada-transporte-rodoviario.jpg')}}"
                                                     class="center-block">
                                             </div>
                                         </a>
@@ -106,7 +106,7 @@
                                         <a href="">
                                             <div class="servicos-item-azul"></div>
                                             <div class="servicos-item-imagem">
-                                                <img src="/img/certificados/policia-civil-empresa-aprovada-transporte-rodoviario.jpg"
+                                                <img src="{{URL::to('public/img/certificados/policia-civil-empresa-aprovada-transporte-rodoviario.jpg')}}"
                                                     class="center-block">
                                             </div>
                                         </a>
@@ -120,7 +120,7 @@
                                         <a href="">
                                             <div class="servicos-item-azul"></div>
                                             <div class="servicos-item-imagem">
-                                                <img src="/img/certificados/ibama-empresa-aprovada-transporte-rodoviario.gif"
+                                                <img src="{{URL::to('public/img/certificados/ibama-empresa-aprovada-transporte-rodoviario.gif')}}"
                                                     class="center-block">
                                             </div>
                                         </a>
@@ -148,56 +148,56 @@
                                     <div class="titulo centro">
                                         <h5>Auto Lins</h5>
                                     </div>
-                                    <img src="/img/parceiros/autolins.png" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/autolins.png')}}" class="center-block')}}">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Cofipe</h5>
                                     </div>
-                                    <img src="/img/parceiros/cofipe.jpg" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/cofipe.jpg')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Divena</h5>
                                     </div>
-                                    <img src="/img/parceiros/divena.png" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/divena.png')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Freios Casqueiros</h5>
                                     </div>
-                                    <img src="/img/parceiros/freios-casqueiro.png" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/freios-casqueiro.png')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Della Via</h5>
                                     </div>
-                                    <img src="/img/parceiros/della-via.jpg" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/della-via.jpg')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Link</h5>
                                     </div>
-                                    <img src="/img/parceiros/link.png" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/link.png')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>DPaschoal</h5>
                                     </div>
-                                    <img src="/img/parceiros/dpaschoal.jpg" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/dpaschoal.jpg')}}" class="center-block">
                                     <hr>
                                 </div>
                                 <div class="col-md-3 parceiros">
                                     <div class="titulo centro">
                                         <h5>Multieixo</h5>
                                     </div>
-                                    <img src="/img/parceiros/multieixo.jpg" class="center-block">
+                                    <img src="{{URL::to('public/img/parceiros/multieixo.jpg')}}" class="center-block">
                                     <hr class="col-xs-invisivel">
                                 </div>
                             </div>
