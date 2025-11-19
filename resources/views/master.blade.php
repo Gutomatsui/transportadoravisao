@@ -23,6 +23,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 <body>
     <div class="topo">
         <!-- RECIPIENTE -->
@@ -55,7 +56,10 @@
                             <li><a href="frota">Frota</a></li>
                             <li><a href="clientes">Clientes</a></li>
                             <li><a href="cotacao">Cotação</a></li>
-                            <li><a href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale Conosco</a></li>
+                            <li><a href="rotinas">Fotos</a></li>
+                            <li><a
+                                    href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale
+                                    Conosco</a></li>
                             <li><a href="localizacao">Localização</a></li>
                         </ul>
                     </div>
@@ -67,7 +71,9 @@
             <div class="menu-institucional">
                 <ul>
                     <li>Endereço: Praça da República, 62 conj 144 Centro - Santos - SP CEP: 11013-921</li>
-                    <li class=""><i class="glyphicon glyphicon-earphone"></i> <a href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale Conosco</a></li>
+                    <li class=""><i class="glyphicon glyphicon-earphone"></i> <a
+                            href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale
+                            Conosco</a></li>
                     <li class=""><i class="glyphicon glyphicon-map-marker"></i> <a href="localizacao">Localização</a>
                     </li>
                 </ul>
@@ -91,27 +97,30 @@
                     </li>
 
                     <li class="{{ $title == 'A Empresa' ? 'ativo' : '' }}">
-                        <a href="a-empresa">A Empresa</a>
+                        <a href="{{route('a-empresa')}}">A Empresa</a>
                     </li>
 
                     <li class="{{ $title == 'SASSMAQ' ? 'ativo' : '' }}">
-                        <a href="sassmaq">SASSMAQ</a>
+                        <a href="{{route('sassmaq')}}">SASSMAQ</a>
                     </li>
 
                     <li class="{{ $title == 'Serviços' ? 'ativo' : '' }}">
-                        <a href="servicos">Serviços</a>
+                        <a href="{{route('servicos')}}">Serviços</a>
                     </li>
 
                     <li class="{{ $title == 'Frota' ? 'ativo' : '' }}">
-                        <a href="frota">Frota</a>
+                        <a href="{{route('frota')}}">Frota</a>
                     </li>
 
                     <li class="{{ $title == 'Clientes' ? 'ativo' : '' }}">
-                        <a href="clientes">Clientes</a>
+                        <a href="{{route('clientes')}}">Clientes</a>
                     </li>
 
                     <li class="{{ $title == 'Cotação' ? 'ativo' : '' }}">
-                        <a href="cotacao">Cotação</a>
+                        <a href="{{route('cotacao')}}">Cotação</a>
+                    </li>
+                    <li class="{{ $title == 'Rotinas' ? 'ativo' : '' }}">
+                        <a href="rotinas">Fotos</a>
                     </li>
                 </ul>
             </div>
@@ -122,16 +131,14 @@
 
     <div class="main">
         @yield('content')
-    </div>    
-</div>    
+    </div>
+    </div>
 
-<!-- Botão flutuante WhatsApp -->
-<a href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!" 
-   target="_blank" 
-   class="whatsapp-float" 
-   title="Fale conosco no WhatsApp">
-  <i class="fa fa-whatsapp" aria-hidden="true"></i>
-</a>
+    <!-- Botão flutuante WhatsApp -->
+    <a href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!" target="_blank"
+        class="whatsapp-float" title="Fale conosco no WhatsApp">
+        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+    </a>
 
     {{-- Roda pé --}}
     <div class="rodape">
@@ -144,7 +151,8 @@
                         </div>
                         <ul>
                             <li><i class="glyphicon glyphicon-earphone"></i> Telefone
-                                 <h5>+55 (13) 3216-1910</h5>
+                                <h5 style="margin-top: 2%">+55 (13) 3216-1910</h5>
+                                <h5 style="margin-top: 2%">+55 (13) 3216-1910</h5>
                             </li>
                             <li><i class="glyphicon glyphicon-envelope"></i> E-mail
                                 <h5>falecom@transportadoravisao.com.br</h5>
@@ -168,7 +176,10 @@
                             <li><a href="frota">Frota</a></li>
                             <li><a href="clientes">Clientes</a></li>
                             <li><a href="cotacao">Cotação</a></li>
-                            <li><a href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale Conosco</a></li>
+                            <li><a href="rotinas">Fotos</a></li>
+                            <li><a
+                                    href="https://wa.me/5513974059978?text=Olá,%20quero%20saber%20mais%20sobre%20os%20serviços!">Fale
+                                    Conosco</a></li>
                             <li><a href="localizacao">Localização</a></li>
                         </ul>
                     </div>
@@ -234,7 +245,7 @@
             /*
             var mapa2;
             var marcador2 = new google.maps.LatLng(-3.8082246010570433, -38.41715969999996);
-    
+
             var myOptions = {
                 zoom: 15,
                 center: new google.maps.LatLng(-3.8082246010570433, -38.41715969999996),

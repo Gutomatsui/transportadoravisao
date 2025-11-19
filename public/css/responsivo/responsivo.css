@@ -62,3 +62,15 @@
 
 @media screen and (min-width: 1201px) {
 }
+
+@media screen and (max-width: 767px) {
+    /* Opção A: Aumentar a especificidade */
+    .servicos-item .servicos-item-imagem img { /* Adicionando o pai .servicos-item */
+        display: block !important; /* Usar !important como último recurso, tente sem ele primeiro */
+    }
+
+    /* Opção B: Simplesmente sobrescrever se a ordem de carregamento for favorável */
+    .servicos-item-imagem img {
+        display: block; /* Ou display: inline-block; dependendo do seu layout */
+    }
+}

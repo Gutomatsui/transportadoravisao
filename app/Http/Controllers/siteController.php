@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rotina; // Importe o modelo Rotina
+use App\Models\CategoriaRotina; // Importe o modelo CategoriaRotina
 
 class siteController extends Controller
 {
@@ -36,5 +38,35 @@ class siteController extends Controller
 
     public function localizacao(){
       return view('localizacao.index', ['title' => 'Localização']);
+    }
+
+  public function rotinasIndex(Request $request)
+{
+    $query = Rotina::with('categoria')->orderBy('created_at', 'desc');
+
+    if ($request->has('categoria') && $request->input('categoria') != '') {
+        $query->where('categoria_rotina_id', $request->input('categoria'));
+    }
+
+    $rotinas = $query->paginate(9);
+
+    // temporariamente para debug
+    // dd($rotinas); // <--- Adicione esta linha e recarregue a página
+
+    $categorias = CategoriaRotina::withCount('rotinas')->orderBy('nome')->get();
+
+    return view('rotinas.index', [
+        'title' => 'Rotinas',
+        'rotinas' => $rotinas,
+        'categorias' => $categorias
+    ]);
+}
+
+    public function rotinaShow(Rotina $rotina)
+    {
+        return view('rotinas.show', [
+            'title' => $rotina->title,
+            'rotina' => $rotina
+        ]);
     }
 }

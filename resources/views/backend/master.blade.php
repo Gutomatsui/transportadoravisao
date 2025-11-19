@@ -8,7 +8,7 @@
 
     <title>Transportadora Visão </title>
 
-    <meta name="description" content="KL climatização">
+    <meta name="description" content="Transportadora Visão">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
@@ -107,6 +107,23 @@
                                 <ul>
                                     <li>
                                         <a href="{{ URL::to('cotacao/listar') }}">Listagem de cotação</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="sidebar-nav-menu"><i
+                                        class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
+                                        class="gi gi-user sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Rotinas</span></a>
+                                <ul>
+                                    <li>
+                                        <a href="{{ URL::to('rotinas/categoria/listar') }}">Listagem de Categoria</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ URL::to('rotinas/listar') }}">Listagem de Rotinas</a>
                                     </li>
 
                                 </ul>
